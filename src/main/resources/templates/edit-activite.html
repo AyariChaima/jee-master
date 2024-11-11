@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Activite</title>
+</head>
+<body>
+<h1>Edit Activite</h1>
+
+<form th:action="@{/activites/update/{id}(id=${activite.idActivite})}" method="post">
+    <label for="nomActivite">Activity Name:</label>
+    <input type="text" id="nomActivite" name="nomActivite" th:value="${activite.nomActivite}" required><br>
+
+    <label for="dateDebutActivite">Start Date:</label>
+    <input type="date" id="dateDebutActivite" name="dateDebutActivite" th:value="${activite.dateDebutActivite}" required><br>
+
+    <label for="dateFinActivite">End Date:</label>
+    <input type="date" id="dateFinActivite" name="dateFinActivite" th:value="${activite.dateFinActivite}" required><br>
+
+    <button type="submit">Save Changes</button>
+</form>
+
+<form action="/activites" method="get">
+    <button type="submit">Back to Activity List</button>
+</form>
+
+<a href="/activites">Back to Activity List</a>
+</body>
+</html>

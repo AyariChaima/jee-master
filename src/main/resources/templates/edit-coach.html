@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Edit Coach</title>
+</head>
+<body>
+<h1>Edit Coach</h1>
+
+<form th:action="@{/coaches/update/{id}(id=${coach.id_coach})}" method="post">
+  <label for="nom_coach">Name:</label>
+  <input type="text" id="nom_coach" name="nom_coach" th:value="${coach.nom_coach}" required><br>
+
+  <label for="prenom_coach">First Name:</label>
+  <input type="text" id="prenom_coach" name="prenom_coach" th:value="${coach.prenom_coach}" required><br>
+
+  <label for="email">Email:</label>
+  <input type="email" id="email" name="email" th:value="${coach.email}" required><br>
+
+  <label for="specialite">Specialty:</label>
+  <input type="text" id="specialite" name="specialite" th:value="${coach.specialite}" required><br>
+
+  <button type="submit">Save Changes</button>
+</form>
+
+<form action="/coaches" method="get">
+  <button type="submit">Back to Coach List</button>
+</form>
+
+<a href="/coaches">Back to Coach List</a>
+</body>
+</html>

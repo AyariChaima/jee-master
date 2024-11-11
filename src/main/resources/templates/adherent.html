@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Manage Adherents</title>
+</head>
+<body>
+<h1>Adherents</h1>
+
+<!-- Display the list of adherents -->
+<div id="adherents-list">
+    <table border="1">
+        <tr>
+            <th>Name</th>
+            <th>First Name</th>
+            <th>Age</th>
+            <th>Email</th>
+            <th>Date of Inscription</th>
+            <th>Actions</th>
+        </tr>
+        <tr th:each="adherent : ${adherents}">
+            <td th:text="${adherent.nom_adherent}"></td>
+            <td th:text="${adherent.prenom_adherent}"></td>
+            <td th:text="${adherent.age}"></td>
+            <td th:text="${adherent.email}"></td>
+            <td th:text="${adherent.date_inscription}"></td>
+       <td>
+           <a th:href="@{/adherents/edit/{id}(id=${adherent.id_adherent})}">Edit</a>
+
+
+           |
+                <a th:href="@{/adherents/delete/{id}(id=${adherent.id_adherent})}" onclick="return confirm('Are you sure you want to delete this adherent?');">Delete</a>
+
+       </td>
+        </tr>
+    </table>
+</div>
+<form action="/adherents/edit-adherent" method="get">
+    <button type="submit">Go to Edit Page</button>
+</form>
+
+
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Manage Coaches</title>
+</head>
+<body>
+<h1>Coaches</h1>
+
+<!-- Display the list of coaches -->
+<div id="coaches-list">
+  <table border="1">
+    <tr>
+      <th>Name</th>
+      <th>First Name</th>
+      <th>Email</th>
+      <th>Specialty</th>
+      <th>Actions</th>
+    </tr>
+    <tr th:each="coach : ${coaches}">
+      <td th:text="${coach.nom_coach}"></td>
+      <td th:text="${coach.prenom_coach}"></td>
+      <td th:text="${coach.email}"></td>
+      <td th:text="${coach.specialite}"></td>
+      <td>
+        <a th:href="@{/coaches/edit/{id}(id=${coach.id_coach})}">Edit</a> |
+        <form th:action="@{/coaches/delete/{id}(id=${coach.id_coach})}" method="post"
+              onsubmit="return confirm('Are you sure you want to delete this coach?');" style="display:inline;">
+          <button type="submit">Delete</button>
+        </form>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<form action="/coaches" method="get">
+  <button type="submit">Back to Coaches List</button>
+</form>
+</body>
+</html>

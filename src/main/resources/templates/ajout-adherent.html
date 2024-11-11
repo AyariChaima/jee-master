@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Adherent</title>
+</head>
+<body>
+<h1>Add New Adherent</h1>
+
+<!-- Formulaire pour ajouter un nouvel adhérent -->
+<form th:action="@{/adherents/add}" method="post">
+    <label for="nom_adherent">Name:</label>
+    <input type="text" id="nom_adherent" name="nom_adherent" required><br>
+
+    <label for="prenom_adherent">First Name:</label>
+    <input type="text" id="prenom_adherent" name="prenom_adherent" required><br>
+
+    <label for="age">Age:</label>
+    <input type="number" id="age" name="age" required><br>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required><br>
+
+    <label for="date_inscription">Date of Inscription:</label>
+    <input type="date" id="date_inscription" name="date_inscription" required><br>
+
+    <button type="submit">Add Adherent</button>
+</form>
+
+<!-- Lien pour revenir à la liste des adhérents -->
+<form action="/adherents" method="get">
+    <button type="submit">Back to Adherent List</button>
+</form>
+
+<a href="/adherents">Back to Adherent List</a>
+
+</body>
+</html>
