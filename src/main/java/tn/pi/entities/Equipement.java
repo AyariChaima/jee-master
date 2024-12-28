@@ -16,7 +16,7 @@ import java.util.Date;
 public class Equipement {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idEquipement;
+    private Long idEquipement;
     private String nomEquipement;
     private int quantite;
     private String typeEquipement;

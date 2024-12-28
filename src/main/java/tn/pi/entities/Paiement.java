@@ -17,7 +17,7 @@ import java.util.Date;
 public class Paiement {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idPaiement;
+    private Long idPaiement;
     private Date datePaiement;
     private String typePaiement;
     private Double montantPaiement;

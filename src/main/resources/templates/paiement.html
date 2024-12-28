@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Manage Paiements</title>
+</head>
+<body>
+<h1>Paiements</h1>
+<table border="1">
+    <tr>
+        <th>Date</th>
+        <th>Type</th>
+        <th>Montant</th>
+        <th>Actions</th>
+    </tr>
+    <tr th:each="paiement : ${paiements}">
+        <td th:text="${paiement.datePaiement}"></td>
+        <td th:text="${paiement.typePaiement}"></td>
+        <td th:text="${paiement.montantPaiement}"></td>
+        <td>
+            <a th:href="@{/paiements/edit/{id}(id=${paiement.idPaiement})}">Edit</a>
+            <form th:action="@{/paiements/delete/{id}(id=${paiement.idPaiement})}" method="post"
+                  onsubmit="return confirm('Are you sure you want to delete this paiement?');">
+                <button type="submit">Delete</button>
+            </form>
+        </td>
+    </tr>
+</table>
+<a href="/paiements/ajout">Add New Paiement</a>
+</body>
+</html>
