@@ -2,32 +2,77 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Edit Adherent</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modifier un Adhérent</title>
+
+    <!-- Favicon -->
+    <link href="/img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Rubik&display=swap" rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Bootstrap Stylesheet -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
 </head>
 <body>
-<h1>Edit Adherent</h1>
+<!-- Header Section -->
+<header class="bg-primary text-white text-center py-3">
+    <h1>Modifier un Adhérent</h1>
+</header>
 
-<form th:action="@{/adherents/update/{id}(id=${adherent.id_adherent})}" method="post">
-    <label for="nom_adherent">Name:</label>
-    <input type="text" id="nom_adherent" name="nom_adherent" th:value="${adherent.nom_adherent}" required><br>
+<!-- Main Content Section -->
+<main class="container my-5">
+    <!-- Form to Edit Adherent -->
+    <form th:action="@{/adherents/update/{id}(id=${adherent.id_adherent})}" method="post" class="bg-light p-4 rounded shadow-sm">
+        <div class="mb-3">
+            <label for="nom_adherent" class="form-label">Nom :</label>
+            <input type="text" id="nom_adherent" name="nom_adherent" class="form-control" th:value="${adherent.nom_adherent}" required>
+        </div>
 
-    <label for="prenom_adherent">First Name:</label>
-    <input type="text" id="prenom_adherent" name="prenom_adherent" th:value="${adherent.prenom_adherent}" required><br>
+        <div class="mb-3">
+            <label for="prenom_adherent" class="form-label">Prénom :</label>
+            <input type="text" id="prenom_adherent" name="prenom_adherent" class="form-control" th:value="${adherent.prenom_adherent}" required>
+        </div>
 
-    <label for="age">Age:</label>
-    <input type="number" id="age" name="age" th:value="${adherent.age}" required><br>
+        <div class="mb-3">
+            <label for="age" class="form-label">Âge :</label>
+            <input type="number" id="age" name="age" class="form-control" th:value="${adherent.age}" required>
+        </div>
 
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="email" th:value="${adherent.email}" required><br>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email :</label>
+            <input type="email" id="email" name="email" class="form-control" th:value="${adherent.email}" required>
+        </div>
 
-    <label for="date_inscription">Date of Inscription:</label>
-    <input type="date" id="date_inscription" name="date_inscription" th:value="${adherent.date_inscription}" required><br>
+        <div class="mb-3">
+            <label for="date_inscription" class="form-label">Date d'inscription :</label>
+            <input type="date" id="date_inscription" name="date_inscription" class="form-control" th:value="${adherent.date_inscription}" required>
+        </div>
 
-    <button type="submit">Save Changes</button>
-</form>
-<form action="/adherents" method="get">
-    <button type="submit">Back to Adherent List</button>
-</form>
-<a href="/adherents">Back to Adherent List</a>
+        <!-- Submit Button -->
+        <div class="text-center">
+            <button type="submit" class="btn btn-success">
+                <i class="fas fa-save"></i> Enregistrer les modifications
+            </button>
+            <a href="/adherents" class="btn btn-secondary">
+                <i class="fas fa-arrow-left"></i> Retour à la liste
+            </a>
+        </div>
+    </form>
+</main>
+
+<!-- Footer Section -->
+<footer class="bg-light text-center py-3">
+    <p>&copy; 2024 Gestion des Adhérents. Tous droits réservés.</p>
+</footer>
+
+<!-- Scripts -->
+<script src="/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

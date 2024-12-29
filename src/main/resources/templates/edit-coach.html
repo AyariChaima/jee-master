@@ -2,31 +2,66 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Edit Coach</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modifier un Coach</title>
+
+  <!-- Favicon -->
+  <link href="/img/favicon.ico" rel="icon">
+
+  <!-- Google Web Fonts -->
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Rubik&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap Stylesheet -->
+  <link href="/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/css/style.css" rel="stylesheet">
 </head>
 <body>
-<h1>Edit Coach</h1>
+<!-- Header Section -->
+<header class="bg-primary text-white text-center py-3">
+  <h1>Modifier un Coach</h1>
+</header>
 
-<form th:action="@{/coaches/update/{id}(id=${coach.id_coach})}" method="post">
-  <label for="nom_coach">Name:</label>
-  <input type="text" id="nom_coach" name="nom_coach" th:value="${coach.nom_coach}" required><br>
+<!-- Main Content Section -->
+<main class="container my-5">
+  <form th:action="@{/coaches/update/{id}(id=${coach.id_coach})}" method="post" class="bg-light p-4 rounded shadow-sm">
+    <div class="mb-3">
+      <label for="nom_coach" class="form-label">Nom :</label>
+      <input type="text" id="nom_coach" name="nom_coach" th:value="${coach.nom_coach}" class="form-control" required>
+    </div>
 
-  <label for="prenom_coach">First Name:</label>
-  <input type="text" id="prenom_coach" name="prenom_coach" th:value="${coach.prenom_coach}" required><br>
+    <div class="mb-3">
+      <label for="prenom_coach" class="form-label">Prénom :</label>
+      <input type="text" id="prenom_coach" name="prenom_coach" th:value="${coach.prenom_coach}" class="form-control" required>
+    </div>
 
-  <label for="email">Email:</label>
-  <input type="email" id="email" name="email" th:value="${coach.email}" required><br>
+    <div class="mb-3">
+      <label for="email" class="form-label">Email :</label>
+      <input type="email" id="email" name="email" th:value="${coach.email}" class="form-control" required>
+    </div>
 
-  <label for="specialite">Specialty:</label>
-  <input type="text" id="specialite" name="specialite" th:value="${coach.specialite}" required><br>
+    <div class="mb-3">
+      <label for="specialite" class="form-label">Spécialité :</label>
+      <input type="text" id="specialite" name="specialite" th:value="${coach.specialite}" class="form-control" required>
+    </div>
 
-  <button type="submit">Save Changes</button>
-</form>
+    <div class="text-center">
+      <button type="submit" class="btn btn-success">
+        <i class="fas fa-save"></i> Sauvegarder les Modifications
+      </button>
+      <a href="/coaches" class="btn btn-secondary">
+        <i class="fas fa-arrow-left"></i> Retour à la liste
+      </a>
+    </div>
+  </form>
+</main>
 
-<form action="/coaches" method="get">
-  <button type="submit">Back to Coach List</button>
-</form>
+<!-- Footer Section -->
+<footer class="bg-light text-center py-3">
+  <p>&copy; 2024 Gestion des Coachs. Tous droits réservés.</p>
+</footer>
 
-<a href="/coaches">Back to Coach List</a>
+<!-- Scripts -->
+<script src="/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

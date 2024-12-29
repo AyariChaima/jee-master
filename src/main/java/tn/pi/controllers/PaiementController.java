@@ -35,6 +35,8 @@ public class PaiementController {
         return "redirect:/paiements";
     }
 
+
+
     @GetMapping("/edit/{id}")
     public String showEditForm(@PathVariable Long id, Model model) {
         Paiement paiement = paiementRepository.findById(id).orElse(null);
@@ -45,17 +47,22 @@ public class PaiementController {
         return "redirect:/paiements";
     }
 
+
+
     @PostMapping("/update/{id}")
     public String updatePaiement(@PathVariable Long id, @ModelAttribute Paiement paiementDetails) {
         Paiement paiement = paiementRepository.findById(id).orElse(null);
-        if (paiement != null) {
-            paiement.setDatePaiement(paiementDetails.getDatePaiement());
-            paiement.setTypePaiement(paiementDetails.getTypePaiement());
-            paiement.setMontantPaiement(paiementDetails.getMontantPaiement());
-            paiementRepository.save(paiement);
+        if (paiement == null) {
+            // Retourne une erreur si l'entité Paiement n'est pas trouvée
+            return "redirect:/paiements";
         }
+        paiement.setDatePaiement(paiementDetails.getDatePaiement());
+        paiement.setTypePaiement(paiementDetails.getTypePaiement());
+        paiement.setMontantPaiement(paiementDetails.getMontantPaiement());
+        paiementRepository.save(paiement);
         return "redirect:/paiements";
     }
+
 
     @PostMapping("/delete/{id}")
     public String deletePaiement(@PathVariable Long id) {

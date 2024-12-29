@@ -1,7 +1,9 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Page d'Accueil</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page d'Accueil - Adhérents</title>
     <!-- Favicon -->
     <link href="/img/favicon.ico" rel="icon">
 
@@ -22,40 +24,62 @@
     <link href="/css/style.css" rel="stylesheet">
 </head>
 <body>
-<h1>Adherents</h1>
+<!-- Header Section -->
+<header class="bg-primary text-white text-center py-3">
+    <h1>Gestion des Adhérents</h1>
+</header>
 
-<!-- Display the list of adherents -->
-<div id="adherents-list">
-    <table border="1">
-        <tr>
-            <th>Name</th>
-            <th>First Name</th>
-            <th>Age</th>
-            <th>Email</th>
-            <th>Date of Inscription</th>
-            <th>Actions</th>
-        </tr>
-        <tr th:each="adherent : ${adherents}">
-            <td th:text="${adherent.nom_adherent}"></td>
-            <td th:text="${adherent.prenom_adherent}"></td>
-            <td th:text="${adherent.age}"></td>
-            <td th:text="${adherent.email}"></td>
-            <td th:text="${adherent.date_inscription}"></td>
-       <td>
-           <a th:href="@{/adherents/edit/{id}(id=${adherent.id_adherent})}">Edit</a>
+<!-- Main Content Section -->
+<main class="container my-5">
+    <!-- Table of Adherents -->
+    <div id="adherents-list" class="table-responsive">
+        <table class="table table-striped table-bordered">
+            <thead class="table-dark">
+            <tr>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Âge</th>
+                <th>Email</th>
+                <th>Date d'inscription</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="adherent : ${adherents}">
+                <td th:text="${adherent.nom_adherent}"></td>
+                <td th:text="${adherent.prenom_adherent}"></td>
+                <td th:text="${adherent.age}"></td>
+                <td th:text="${adherent.email}"></td>
+                <td th:text="${adherent.date_inscription}"></td>
+                <td>
+                    <a th:href="@{/adherents/edit/{id}(id=${adherent.id_adherent})}" class="btn btn-sm btn-primary">
+                        <i class="fas fa-edit"></i> Modifier
+                    </a>
+                    <a th:href="@{/adherents/delete/{id}(id=${adherent.id_adherent})}"
+                       class="btn btn-sm btn-danger"
+                       onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet adhérent ?');">
+                        <i class="fas fa-trash"></i> Supprimer
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 
+    <!-- Button to Edit Page -->
+    <form action="/home" method="get" class="text-center mt-4">
+        <button type="submit" class="btn btn-success">
+            <i class="fas fa-pen"></i> Aller à la page de gestion de club
+        </button>
+    </form>
+</main>
 
-           |
-                <a th:href="@{/adherents/delete/{id}(id=${adherent.id_adherent})}" onclick="return confirm('Are you sure you want to delete this adherent?');">Delete</a>
+<!-- Footer Section -->
+<footer class="bg-light text-center py-3">
+    <p>&copy; 2024 Gestion des Adhérents. Tous droits réservés.</p>
+</footer>
 
-       </td>
-        </tr>
-    </table>
-</div>
-<form action="/adherents/edit-adherent" method="get">
-    <button type="submit">Go to Edit Page</button>
-</form>
-
-
+<!-- Scripts -->
+<script src="/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

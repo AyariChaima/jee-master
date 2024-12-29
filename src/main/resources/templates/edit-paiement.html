@@ -6,6 +6,7 @@
 </head>
 <body>
 <h1>Edit Paiement</h1>
+
 <form th:action="@{/paiements/update/{id}(id=${paiement.idPaiement})}" method="post">
     <label for="datePaiement">Date:</label>
     <input type="date" id="datePaiement" name="datePaiement" th:value="${paiement.datePaiement}" required><br>
