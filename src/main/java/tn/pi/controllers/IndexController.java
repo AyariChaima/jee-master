@@ -7,6 +7,6 @@ public class IndexController {
     // Mapping pour la page d'accueil
     @GetMapping("/index")
     public String index() {
-        return "index"; // Renvoie vers le template `index.html`
+        return "index2"; // Renvoie vers le template `index.html`
     }
 }

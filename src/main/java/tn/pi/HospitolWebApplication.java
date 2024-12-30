@@ -5,9 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import tn.pi.entities.Adherent;
-import tn.pi.entities.Patient;
 import tn.pi.repositories.AdherentRepository;
-import tn.pi.repositories.PatientRepository;
 
 import java.time.LocalDate;
 
@@ -18,6 +16,7 @@ public class HospitolWebApplication {
 
 		SpringApplication.run(HospitolWebApplication.class, args);
 	}
+	/*
 	@Bean
 	public CommandLineRunner init2(AdherentRepository adherentRepository) {
 		return args -> {
@@ -31,5 +30,5 @@ public class HospitolWebApplication {
 			adherentRepository.save(a1);
 		};
 	}
-
+*/
 }

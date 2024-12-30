@@ -37,11 +37,14 @@
                 <div class="col-lg-7 px-5 text-start">
                     <div class="h-100 d-inline-flex align-items-center py-2 me-4">
                         <i class="fa fa-envelope text-primary me-2"></i>
-                        <h6 class="mb-0">info@example.com</h6>
+                        <!-- Display user info -->
+                        <p>Welcome <span th:text="${session.user.username}"></span> !</p>
+
                     </div>
                     <div class="h-100 d-inline-flex align-items-center py-2">
                         <i class="fa fa-phone-alt text-primary me-2"></i>
-                        <h6 class="mb-0">+012 345 6789</h6>
+                        <!-- Add a logout link -->
+                        <a href="/logout">Logout</a>
                     </div>
                 </div>
                 <div class="col-lg-5 px-5 text-end">

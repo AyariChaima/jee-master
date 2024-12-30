@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Register</title>
 
     <!-- Favicon -->
     <link href="/img/favicon.ico" rel="icon">
@@ -121,27 +121,41 @@
 </nav>
 
 <main class="container my-5">
-    <form action="/login" method="post">
-        <div class="form-title">Connectez-vous et prenez le contrôle de votre avenir dès maintenant !</div>
+    <form action="/register" method="post">
+        <div class="form-title">Transformez votre vie dès aujourd'hui ! Créez votre compte maintenant</div>
 
-    <div class="mb-3">
-        <label for="username">UserName:</label>
-        <input type="text" id="username" name="username" required><br><br>
-    </div>
-
-    <div class="mb-3">
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required><br><br>
-    </div>
-
-        <div class="text-center">
-            <button type="submit" class="btn">Login <i class="fas fa-sign-in-alt"></i></button>
+        <div class="mb-3">
+            <label for="first-name">First Name:</label>
+            <input type="text" id="first-name" name="firstName" required>
         </div>
 
-</form>
-</main>
-<!-- Display error message if the login failed -->
-<p th:if="${error != null}" th:text="${error}"></p>
+        <div class="mb-3">
+            <label for="last-name">Last Name:</label>
+            <input type="text" id="last-name" name="lastName" required>
+        </div>
 
+        <div class="mb-3">
+            <label for="username">UserName:</label>
+            <input type="text" id="username" name="username" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="role">Role:</label><br>
+            <input type="radio" id="user" name="role" value="USER" required>
+            <label for="user">Adherent</label><br>
+            <input type="radio" id="coach" name="role" value="COACH" required>
+            <label for="coach">Coach</label>
+        </div>
+        <div class="text-center">
+            <button type="submit" class="btn">Register <i class="fas fa-user-plus"></i></button>
+        </div>
+    </form>
+</main>
 </body>
+
 </html>

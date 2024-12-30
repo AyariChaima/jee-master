@@ -41,7 +41,6 @@
                     </div>
                     <div class="h-100 d-inline-flex align-items-center py-2">
                         <i class="fa fa-phone-alt text-primary me-2"></i>
-                        <h6 class="mb-0">+216 55 678 917</h6>
                     </div>
                 </div>
                 <div class="col-lg-5 px-5 text-end">
@@ -68,6 +67,13 @@
                 <a href="index.html" class="navbar-brand d-block d-lg-none">
                     <h1 class="m-0 display-4 text-primary text-uppercase">Gymster</h1>
                 </a>
+
+                <!-- Display user info -->
+                <p>Welcome, <span th:text="${user.firstName}"></span>!</p>
+
+                <!-- Add a logout link -->
+                <a href="/logout">Logout</a>
+
                 <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                     <span class="navbar-toggler-icon"></span>
                 </button>

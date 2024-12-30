@@ -9,6 +9,6 @@ public class HomeController {
     // Mapping pour la page d'accueil
     @GetMapping("/home")
     public String home() {
-        return "ajout-adherent"; // Renvoie vers le template `index.html`
+        return "home"; // Renvoie vers le template `index.html`
     }
 }
