@@ -151,6 +151,49 @@
             <input type="radio" id="coach" name="role" value="COACH" required>
             <label for="coach">Coach</label>
         </div>
+        <div class="mb-3">
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="phone">Phone Number:</label>
+            <input type="text" id="phone" name="phoneNumber" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="emergency-phone">Emergency Phone Number:</label>
+            <input type="text" id="emergency-phone" name="emergencyPhoneNumber" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="date-of-inscription">Date of Inscription:</label>
+            <input type="date" id="date-of-inscription" name="dateOfInscription" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="role">Role:</label><br>
+            <input type="radio" id="user" name="role" value="USER" required>
+            <label for="user">Adherent</label><br>
+            <input type="radio" id="coach" name="role" value="COACH" required onclick="showSpecialityInput()">
+            <label for="coach">Coach</label>
+        </div>
+
+        <div class="mb-3" id="speciality-container" style="display: none;">
+            <label for="speciality">Speciality:</label>
+            <input type="text" id="speciality" name="speciality">
+        </div>
+
+        <script>
+            function showSpecialityInput() {
+                document.getElementById('speciality-container').style.display = 'block';
+            }
+        </script>
         <div class="text-center">
             <button type="submit" class="btn">Register <i class="fas fa-user-plus"></i></button>
         </div>

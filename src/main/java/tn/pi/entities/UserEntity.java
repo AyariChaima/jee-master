@@ -2,6 +2,9 @@ package tn.pi.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;
+
+import java.time.LocalDate;
+
 @Entity
 @Data
 public class UserEntity {
@@ -13,6 +16,13 @@ public class UserEntity {
     private String last_name;
     private String username;
     private String password;
+
+    private Integer age;
+    private String email;
+    private String phone_number;
+    private String emergency_phone_number;
+    private LocalDate date_of_inscription;
+    private String speciality;
 
     @ManyToOne
     @JoinColumn(name = "role_id", nullable = false)

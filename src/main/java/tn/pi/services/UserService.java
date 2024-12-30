@@ -6,6 +6,7 @@ import tn.pi.entities.Role;
 import tn.pi.entities.UserEntity;
 import tn.pi.repositories.RoleRepository;
 import tn.pi.repositories.UserRepository;
+import java.time.LocalDate;
 
 @Service
 public class UserService {
@@ -16,7 +17,9 @@ public class UserService {
     @Autowired
     private RoleRepository roleRepository;
 
-    public void registerUser(String firstName, String lastName, String username, String password, String roleName) {
+    public void registerUser(String firstName, String lastName, String username, String password, Integer age,
+                             String email, String phoneNumber, String emergencyPhoneNumber, String dateOfInscription,
+                             String roleName, String speciality) {
         if (userRepository.findByUsername(username) != null) {
             throw new IllegalArgumentException("Username already exists!");
         }
@@ -31,7 +34,17 @@ public class UserService {
         user.setLast_name(lastName);
         user.setUsername(username);
         user.setPassword(password);
+        user.setAge(age);
+        user.setEmail(email);
+        user.setPhone_number(phoneNumber);
+        user.setEmergency_phone_number(emergencyPhoneNumber);
+        user.setDate_of_inscription(LocalDate.parse(dateOfInscription));
         user.setRole(role);
+
+        // If the role is COACH, set the speciality
+        if ("COACH".equals(roleName)) {
+            user.setSpeciality(speciality);
+        }
 
         userRepository.save(user);
     }

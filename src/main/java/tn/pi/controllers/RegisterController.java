@@ -22,10 +22,16 @@ public class RegisterController {
                                @RequestParam String lastName,
                                @RequestParam String username,
                                @RequestParam String password,
+                               @RequestParam Integer age,
+                               @RequestParam String email,
+                               @RequestParam String phoneNumber,
+                               @RequestParam String emergencyPhoneNumber,
+                               @RequestParam String dateOfInscription,
                                @RequestParam String role,
+                               @RequestParam(required = false) String speciality,
                                Model model) {
         try {
-            userService.registerUser(firstName, lastName, username, password, role);
+            userService.registerUser(firstName, lastName, username, password, age, email, phoneNumber, emergencyPhoneNumber, dateOfInscription, role, speciality);
             model.addAttribute("success", "Registration successful!");
             return "redirect:/login";
         } catch (IllegalArgumentException e) {
