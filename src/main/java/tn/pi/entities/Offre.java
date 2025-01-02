@@ -6,19 +6,18 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.*;
 
-import java.util.Date;
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Activite {
+public class Offre {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idActivite;
-    private String nomActivite;
-    private Date dateDebutActivite;
-    private Date dateFinActivite;
+    private Long idOffre;
 
+    private String nomOffre;
+    private Double PrixUnitaire;
+    private String description;
 }

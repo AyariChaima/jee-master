@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Page d'Accueil</title>
+    <!-- Favicon -->
+    <link href="/img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Rubik&display=swap" rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="/lib/flaticon/font/flaticon.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
+</head>
+<body>
+<h2>Choose Your Offer</h2>
+<p>Offer: <strong th:text="${offre.nomOffre}"></strong></p>
+<p>Price per month: <strong th:text="${offre.prixUnitaire}"></strong></p><br>
+
+<form action="/paiements/valider" method="POST">
+    <input type="hidden" name="offreId" th:value="${offre.idOffre}">
+
+    <!-- Duration Selection (Dropdown) -->
+    <label for="duration">Choose Duration:</label>
+    <select name="duration" id="duration" required>
+        <option value="1">1 Month</option>
+        <option value="3">3 Months</option>
+        <option value="6">6 Months</option>
+        <option value="12">12 Months</option>
+    </select>
+
+    <!-- Payment Type (Radio Buttons) -->
+    <label for="typePaiement">Choose Payment Type:</label><br>
+    <input type="radio" id="cash" name="typePaiement" value="CASH" required>
+    <label for="cash">Cash</label><br>
+    <input type="radio" id="visa" name="typePaiement" value="VISA">
+    <label for="visa">Visa</label><br>
+    <input type="radio" id="mastercard" name="typePaiement" value="MASTERCARD">
+    <label for="mastercard">MasterCard</label><br>
+
+    <!-- Visa/MasterCard Card Details -->
+    <div id="cardDetails" style="display:none;">
+        <label for="cardNumber">Card Number:</label>
+        <input type="text" id="cardNumber" name="cardNumber" placeholder="XXXX-XXXX-XXXX-XXXX" /><br>
+
+        <label for="expiryDate">Expiry Date:</label>
+        <input type="month" id="expiryDate" name="expiryDate" /><br>
+
+        <label for="cvv">CVV:</label>
+        <input type="text" id="cvv" name="cvv" placeholder="CVV" /><br>
+    </div>
+<br>
+    <button type="submit">Confirm</button>
+</form>
+
+<!-- Add JavaScript to show/hide card details based on selected payment method -->
+<script>
+    const paymentType = document.querySelectorAll('input[name="typePaiement"]');
+    const cardDetails = document.getElementById('cardDetails');
+
+    paymentType.forEach((radio) => {
+        radio.addEventListener('change', function() {
+            if (this.value === 'VISA' || this.value === 'MASTERCARD') {
+                cardDetails.style.display = 'block';
+            } else {
+                cardDetails.style.display = 'none';
+            }
+        });
+    });
+</script>
+</body>
+</html>
