@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Equipment List</title>
+</head>
+<body>
+<h1>Available Equipment</h1>
+
+<!-- Equipment Table -->
+<table>
+    <thead>
+    <tr>
+        <th>Equipment Name</th>
+        <th>Quantity</th>
+        <th>Type</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Loop through the equipment list -->
+    <tr th:each="equipement : ${equipements}">
+        <td th:text="${equipement.nomEquipement}"></td>
+        <td th:text="${equipement.quantite}"></td>
+        <td th:text="${equipement.typeEquipement}"></td>
+    </tr>
+    </tbody>
+</table>
+
+
+<h2>Your Equipment Demands</h2>
+
+<!-- Demands Table -->
+<table>
+    <thead>
+    <tr>
+        <th>Equipment Name</th>
+        <th>Description</th>
+        <th>Date of Request</th>
+        <th>Status</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Loop through the coach's demands -->
+    <tr th:each="demande : ${demandes}">
+        <td th:text="${demande.nomEquipement}"></td>
+        <td th:text="${demande.descriptionDemande}"></td>
+        <td th:text="${#dates.format(demande.dateDemande, 'yyyy-MM-dd')}"></td>
+        <td th:text="${demande.status}"></td>
+    </tr>
+    </tbody>
+</table>
+<h4>Make a new demand</h4>
+
+<!-- Success Message -->
+<div th:if="${param.success}" style="color: green;">
+    Your request has been submitted successfully!
+</div>
+
+<form action="/equipements/demande" method="POST">
+    <!-- Input for the equipment name -->
+    <label for="nomEquipement">Equipment Name:</label>
+    <input type="text" id="nomEquipement" name="nomEquipement" placeholder="Enter equipment name" required><br>
+
+    <!-- Input for the equipment description -->
+    <label for="description">Description:</label><br>
+    <textarea id="description" name="description" placeholder="Describe the equipment and why it is needed" required></textarea><br>
+
+    <!-- Submit Button -->
+    <button type="submit">Make a demand</button>
+</form>
+
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Demand New Equipment</title>
+  <style>
+    /* Add border to the table */
+    table {
+      width: 100%;
+      border-collapse: collapse; /* Ensures borders are not doubled */
+    }
+
+    th, td {
+      border: 1px solid black; /* Adds borders to table cells */
+      padding: 8px;
+      text-align: left;
+    }
+
+    /* Style for the description textarea to make it wider */
+    textarea {
+      width: 100%; /* Makes the description field take up full width */
+      height: 100px; /* Adjust height if needed */
+    }
+  </style>
+</head>
+<body>
+<h1>Request New Equipment</h1>
+
+<!-- Success Message -->
+<div th:if="${param.success}" style="color: green;">
+  Your request has been submitted successfully!
+</div>
+
+<form action="/equipements/demande" method="POST">
+  <!-- Input for the equipment name -->
+  <label for="nomEquipement">Equipment Name:</label>
+  <input type="text" id="nomEquipement" name="nomEquipement" placeholder="Enter equipment name" required><br><br>
+
+  <!-- Input for the equipment description -->
+  <label for="description">Description:</label><br>
+  <textarea id="description" name="description" placeholder="Describe the equipment and why it is needed" required></textarea><br><br>
+
+  <!-- Submit Button -->
+  <button type="submit">Submit Request</button>
+</form>
+
+<!-- Table displaying equipment and demands -->
+<h2>Available Equipment</h2>
+<table>
+  <thead>
+  <tr>
+    <th>Equipment Name</th>
+    <th>Quantity</th>
+    <th>Type</th>
+    <th>Action</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td>tapis</td>
+    <td>20</td>
+    <td>yoga</td>
+    <td><button>Make Demand</button></td>
+  </tr>
+  <tr>
+    <td>hartele 5kg</td>
+    <td>30</td>
+    <td>musculation</td>
+    <td><button>Make Demand</button></td>
+  </tr>
+  </tbody>
+</table>
+
+<h2>Your Equipment Demands</h2>
+<table>
+  <thead>
+  <tr>
+    <th>Equipment Name</th>
+    <th>Description</th>
+    <th>Date of Request</th>
+    <th>Status</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td>tapis</td>
+    <td>i want a 20 tapis</td>
+    <td>2025-01-05</td>
+    <td>PENDING</td>
+  </tr>
+  <tr>
+    <td>sonara</td>
+    <td>10 snarat</td>
+    <td>2025-01-05</td>
+    <td>PENDING</td>
+  </tr>
+  </tbody>
+</table>
+
+</body>
+</html>

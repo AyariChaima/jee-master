@@ -88,17 +88,30 @@
                         <a href="about.html" class="nav-item nav-link">About</a>
                         <a href="class.html" class="nav-item nav-link">Classes</a>
                         <a href="team.html" class="nav-item nav-link">Trainers</a>
+                        <!-- the coach can see the equipements -->
+                        <a th:if="${session.user != null} and ${session.user.role.role == 'COACH'}"
+                           href="/equipements"
+                           class="nav-item nav-link">equipements</a>
+                        <a th:if="${session.user != null} and ${session.user.role.role == 'COACH'}"
+                           href="/activites"
+                           class="nav-item nav-link">activites</a>
+                        <a th:if="${session.user != null} and ${session.user.role.role == 'USER'}"
+                           href="/participations"
+                           class="nav-item nav-link">activites</a>
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                             <div class="dropdown-menu rounded-0 m-0">
                                 <a href="blog.html" class="dropdown-item">Blog Grid</a>
                                 <a href="/detail.html" class="dropdown-item">Blog Detail</a>
                                 <a href="testimonial.html" class="dropdown-item">Testimonial</a>
+
+
                             </div>
                         </div>
                         <a href="contact.html" class="nav-item nav-link">Contact</a>
                     </div>
-                    
+
+
                     <!-- sign pages -->
                     <a th:if="${session.user == null}" href="/register"
                        class="btn btn-primary py-md-3 px-md-5 d-none d-lg-block">Join Us</a>
@@ -231,9 +244,7 @@
         </div>
     </div>
 </div>
-<!-- Programe Start -->
 
-<!-- offre mezyenin
 <!-- Testimonial Start -->
 <div class="container-fluid p-0 my-5">
     <div class="row g-0">
@@ -259,12 +270,17 @@
                             <img class="img-fluid rounded-circle" src="img/COMPO_5-3.png" alt="">
                             <div class="ps-4">
                                 <h5 class="text-uppercase text-light" th:text="${offre.nomOffre}"></h5>
-                                <!-- Display a link to choose the offer, conditionally based on whether the user is logged in -->
-                                <a th:if="${session.user == null}" href="/login"
-                                   class="btn btn-primary py-md-3 px-md-5 d-none d-lg-block">Choose This Offer</a>
-
-                                <a th:if="${session.user != null}" href="/offre/choisir/{id}" th:attr="href=@{/offre/choisir/{id}(id=${offre.idOffre})}"
+                                <a th:if="${session.user != null} and ${session.user.role.role == 'USER'}"
+                                   href="/offre/choisir/{id}"
+                                   th:attr="href=@{/offre/choisir/{id}(id=${offre.idOffre})}"
                                    class="btn btn-primary py-md-3 px-md-5">Choose This Offer</a>
+
+                                <!-- Display a link to choose the offer, conditionally based on whether the user is logged in -->
+                                <a th:if="${session.user == null}"
+                                   href="/login"
+                                   class="btn btn-primary py-md-3 px-md-5 d-none d-lg-block">Login to Choose This Offer</a>
+
+
 
                             </div>
                         </div>

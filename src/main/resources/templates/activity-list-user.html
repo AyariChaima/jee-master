@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Activities</title>
+</head>
+<body>
+<h1>Available Activities</h1>
+
+<table border="1">
+  <thead>
+  <tr>
+    <th>Activity Name</th>
+    <th>Date Start</th>
+    <th>Date End</th>
+    <th>Salle</th>
+    <th>Coach Name</th>
+    <th>Max participants</th>
+    <th>Places Left</th>
+    <th>Action</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="activite : ${activites}">
+    <td th:text="${activite.nomActivite}"></td>
+    <td th:text="${#temporals.format(activite.dateDebutActivite, 'yyyy-MM-dd HH:mm')}"></td>
+    <td th:text="${#temporals.format(activite.dateFinActivite, 'yyyy-MM-dd HH:mm')}"></td>
+    <td th:text="${activite.salle}"></td>
+    <td th:text="${activite.coach.first_name} + ' ' + ${activite.coach.last_name}"></td>
+    <td th:text="${activite.maxParticipants}"></td>
+    <td th:text="${placesLeft[activite.idActivite]}"></td>
+    <td>
+      <!-- Show Participate button if the user is not participating -->
+      <form th:if="${!participationStatus[activite.idActivite]}"
+            th:action="@{'/participations/participate/' + ${activite.idActivite}}"
+            method="post">
+        <button type="submit">Participate</button>
+      </form>
+
+      <!-- Show Unparticipate button if the user is already participating -->
+      <form th:if="${participationStatus[activite.idActivite]}"
+            th:action="@{'/participations/unparticipate/' + ${activite.idActivite}}"
+            method="post">
+        <button type="submit">Unparticipate</button>
+      </form>
+    </td>
+  </tr>
+  </tbody>
+</table>
+</body>
+</html>
