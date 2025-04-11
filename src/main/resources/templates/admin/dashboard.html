@@ -3,10 +3,132 @@
 <head>
     <meta charset="UTF-8">
     <title>Admin Dashboard</title>
+    <!-- Favicon -->
+    <link href="/img/favicon.ico" rel="icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Bootstrap & Custom CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Rubik', sans-serif;
+            background: #f8f9fa;
+            overflow-x: hidden;
+        }
+
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background-color: #ffffff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .top-bar .btn-group {
+            display: flex;
+            gap: 10px;
+        }
+
+        .main-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            background: #ffffff;
+            padding: 40px 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        p.lead {
+            font-size: 1.2rem;
+            color: #6c757d;
+        }
+
+        .embed-responsive-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 66.66%; /* 16:9 ratio */
+            height: 0;
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+            margin-top: 20px;
+        }
+
+        .embed-responsive-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        @media (max-width: 768px) {
+            .top-bar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .top-bar .btn-group {
+                margin-top: 10px;
+                width: 100%;
+                justify-content: flex-start;
+                flex-wrap: wrap;
+            }
+        }
+    </style>
 </head>
 <body>
-<h1>Admin Dashboard</h1>
-<!-- hot l link-->
-<iframe width="100%" height="600px" src="YOUR_POWER_BI_LINK" frameborder="0" allowFullScreen="true"></iframe>
+
+<!-- Header -->
+<div class="top-bar">
+    <!-- Logo -->
+    <span class="col-lg-3">
+        <a href="index" class="navbar-brand w-100 h-100 m-0 p-0 d-flex align-items-center">
+            <h1 class="m-0 display-4 text-primary text-uppercase">Gymster</h1>
+        </a>
+    </span>
+
+    <!-- Button Group (Back + Logout) -->
+    <div class="btn-group">
+        <a href="/AdminPanel" class="btn btn-outline-primary rounded-pill px-4 py-2">
+            <i class="fas fa-arrow-left me-2"></i> Back
+        </a>
+        <a th:if="${session.user != null}" href="/logout" class="btn btn-outline-danger rounded-pill px-4 py-2">
+            <i class="fas fa-sign-out-alt me-2"></i> Log Out
+        </a>
+    </div>
+</div>
+
+<!-- Main Admin Panel -->
+<div class="main-container align-items-center">
+    <h1 class="display-20 mb-4">Admin Dashboard</h1>
+
+    <!-- Responsive Power BI iframe -->
+    <div class="embed-responsive-container">
+        <iframe
+                title="Power BI Report"
+                src="https://app.powerbi.com/view?r=eyJrIjoiNDQzYjdkNDUtYjY4My00MmJiLTk4MGQtNDE4NjE0NjlmMDRlIiwidCI6ImEyZDgzMzZlLWEyOTktNGQ1Mi04NjM2LWI3ZWY4YzExN2ExZCIsImMiOjh9"
+                frameborder="0"
+                allowFullScreen="true">
+        </iframe>
+    </div>
+</div>
+
 </body>
 </html>
