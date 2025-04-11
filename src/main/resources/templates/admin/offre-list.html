@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Offer Management</title>
+
+  <!-- Favicon -->
+  <link href="/img/favicon.ico" rel="icon">
+
+  <!-- Google Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Oswald&family=Rubik&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+  <!-- CSS -->
+  <link href="/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/css/style.css" rel="stylesheet">
+</head>
+<body>
+
+<header class="bg-primary text-white text-center py-3">
+  <h1>Offer Management</h1>
+</header>
+
+<main class="container my-5">
+  <div class="table-responsive bg-light p-4 rounded shadow-sm">
+    <table class="table table-bordered table-hover">
+      <thead class="table-dark">
+      <tr>
+        <th>Offer Name</th>
+        <th>Unit Price</th>
+        <th>Description</th>
+        <th>Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="offre : ${offres}">
+        <td th:text="${offre.nomOffre}"></td>
+        <td th:text="${offre.PrixUnitaire}"></td>
+        <td th:text="${offre.description}"></td>
+        <td class="text-center">
+          <a th:href="@{/admin/offres/edit/{id}(id=${offre.idOffre})}" class="btn btn-sm btn-warning">
+            <i class="fas fa-edit"></i> Edit
+          </a>
+          <form th:action="@{/admin/offres/delete/{id}(id=${offre.idOffre})}" method="post"
+                onsubmit="return confirm('Are you sure you want to delete this offer?');"
+                style="display:inline;">
+            <button type="submit" class="btn btn-sm btn-danger">
+              <i class="fas fa-trash-alt"></i> Delete
+            </button>
+          </form>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+
+    <div class="text-center mt-4">
+      <a href="/admin/offres/add" class="btn btn-primary">
+        <i class="fas fa-plus"></i> Add a new Offer
+      </a>
+    </div>
+
+    <!-- Back Button -->
+    <div class="text-center">
+      <a href="/AdminPanel" class="btn btn-secondary">
+        <i class="fas fa-arrow-left"></i> Back
+      </a>
+    </div>
+  </div>
+</main>
+
+<script src="/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

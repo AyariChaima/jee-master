@@ -1,10 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestion des Équipements</title>
+
+  <!-- Favicon -->
+  <link href="/img/favicon.ico" rel="icon">
+
+  <!-- Google Web Fonts -->
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Rubik&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap Stylesheet -->
+  <link href="/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/css/style.css" rel="stylesheet">
 </head>
 <body>
+<!-- Header Section -->
+<header class="bg-primary text-white text-center py-3">
+  <h1>Gestion des Équipements</h1>
+</header>
 
+<!-- Main Content Section -->
+<main class="container my-5">
+  <div class="table-responsive">
+    <table class="table table-bordered table-striped">
+      <thead class="table-dark">
+      <tr>
+        <th>Name</th>
+        <th>Quantity</th>
+        <th>Type</th>
+        <th>Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="equipement : ${equipments}">
+        <td th:text="${equipement.nomEquipement}"></td>
+        <td th:text="${equipement.quantite}"></td>
+        <td th:text="${equipement.typeEquipement}"></td>
+        <td>
+          <a th:href="@{/admin/equipements/edit/{id}(id=${equipement.idEquipement})}" class="btn btn-warning btn-sm">
+            <i class="fas fa-edit"></i> Modifier
+          </a>
+          <form th:action="@{/admin/equipements/delete/{id}(id=${equipement.idEquipement})}" method="post" class="d-inline"
+                onsubmit="return confirm('Do you want to delete this equipement?');">
+            <button type="submit" class="btn btn-danger btn-sm">
+              <i class="fas fa-trash"></i> delete
+            </button>
+          </form>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="text-center mt-4">
+    <a th:href="@{/admin/equipements/add}" class="btn btn-success">
+      <i class="fas fa-plus"></i> Add a new equipement </a>
+  </div>
+
+<br>
+
+  <!-- this is for the demands -->
+  <div class="table-responsive">
+    <table class="table table-bordered table-striped">
+      <thead class="table-dark">
+    <tr>
+      <th>Coach</th>
+      <th>Equipment Name</th>
+      <th>Description</th>
+      <th>Date</th>
+      <th>Status</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="demande : ${demandes}">
+      <td th:text="${demande.coach.username}"></td>
+      <td th:text="${demande.nomEquipement}"></td>
+      <td th:text="${demande.descriptionDemande}"></td>
+      <td th:text="${#dates.format(demande.dateDemande, 'yyyy-MM-dd')}"></td>
+      <td th:text="${demande.status}"></td>
+      <td>
+        <form th:action="@{/admin/equipements/demandes/approve/{id}(id=${demande.idDemande})}" method="POST">
+          <button type="submit" class="btn btn-success btn-sm" >Approve</button>
+        </form>
+        <form th:action="@{/admin/equipements/demandes/reject/{id}(id=${demande.idDemande})}" method="POST">
+          <button type="submit" class="btn btn-warning btn-sm">Reject</button>
+        </form>
+        <form th:action="@{/admin/equipements/demandes/delete/{id}(id=${demande.idDemande})}" method="POST"
+              onsubmit="return confirm('Are you sure you want to delete this request?');">
+          <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+        </form>
+      </td>
+    </tr>
+    </tbody>
+    </table>
+  </div>
+
+  <!-- Back Button -->
+  <div class="text-center">
+    <a href="/AdminPanel" class="btn btn-secondary">
+      <i class="fas fa-arrow-left"></i> Back
+    </a>
+  </div>
+</main>
+
+<!-- Scripts -->
+<script src="/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

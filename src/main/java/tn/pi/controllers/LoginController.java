@@ -27,7 +27,10 @@ public class LoginController {
         try {
             UserEntity user = userService.loginUser(username, password);
             session.setAttribute("user", user); // Set the user in session
-            return "redirect:/index";
+            if (!user.getRole().getRole().equals("ADMIN"))
+            {return "redirect:/index";}
+            else
+            {return "redirect:/AdminPanel" ;}
         } catch (IllegalArgumentException e) {
             model.addAttribute("error", e.getMessage());
             return "login";

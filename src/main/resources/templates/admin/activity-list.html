@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin - Activities</title>
+  <link href="/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/css/style.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+
+<header class="bg-primary text-white text-center py-3">
+  <h1>Activities Management</h1>
+</header>
+
+<main class="container my-5">
+  <div class="table-responsive bg-light p-4 rounded shadow-sm">
+    <table class="table table-bordered table-hover">
+      <thead class="table-dark">
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Coach</th>
+        <th>Equipments</th>
+        <th>Start</th>
+        <th>End</th>
+        <th>Participants</th>
+        <th>Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="activity : ${activities}">
+        <td th:text="${activity.idActivite}"></td>
+        <td th:text="${activity.nomActivite}"></td>
+        <!-- <td th:text="${activity.coach.first_name + ' ' + activity.coach.last_name}"></td>
+        <td>
+          <ul>
+            <li th:each="eq : ${activity.equipements}" th:text="${eq.nomEquipement}"></li>
+          </ul>
+        </td>
+        <td th:text="${#temporals.format(activite.dateDebutActivite, 'yyyy-MM-dd HH:mm')}"></td>
+        <td th:text="${#temporals.format(activite.dateFinActivite, 'yyyy-MM-dd HH:mm')}"></td>
+        <td th:text="${activite.maxParticipants}"></td>-->
+        <td>
+          <a th:href="@{/admin/activities/edit/{id}(id=${activity.idActivite})}" class="btn btn-sm btn-warning">
+            <i class="fas fa-edit"></i> Edit
+          </a>
+          <form th:action="@{/admin/activities/delete/{id}(id=${activity.idActivite})}" method="post" style="display:inline;">
+            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Delete this activity?');">
+              <i class="fas fa-trash-alt"></i> Delete
+            </button>
+          </form>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+
+    <div class="text-center mt-4">
+      <a href="/admin/activities/add" class="btn btn-primary">
+        <i class="fas fa-plus"></i> Add Activity
+      </a>
+    </div>
+
+    <div class="text-center mt-2">
+      <a href="/AdminPanel" class="btn btn-secondary">
+        <i class="fas fa-arrow-left"></i> Back
+      </a>
+    </div>
+  </div>
+</main>
+
+<script src="/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

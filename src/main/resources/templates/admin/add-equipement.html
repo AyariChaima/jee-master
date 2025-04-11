@@ -7,7 +7,7 @@
 <body>
 <h1>Add New Equipment</h1>
 
-<form th:action="@{/equipements/add}" method="post">
+<form th:action="@{/admin/equipements/add}" method="post">
     <label for="nomEquipement">Name:</label>
     <input type="text" id="nomEquipement" name="nomEquipement" required><br>
 
@@ -19,8 +19,6 @@
 
     <button type="submit">Add Equipment</button>
 </form>
-
-<a href="/equipements">Back to Equipment List</a>
 
 </body>
 </html>

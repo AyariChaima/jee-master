@@ -3,54 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>List of members</title>
-
-    <!-- Favicon -->
+    <title>List of Payments</title>
     <link href="/img/favicon.ico" rel="icon">
-
-    <!-- Google Fonts & Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Oswald&family=Rubik&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
-
-    <!-- CSS -->
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/style.css" rel="stylesheet">
 </head>
 <body>
-
 <header class="bg-primary text-white text-center py-3">
-    <h1>Members Management</h1>
+    <h1>Payments Management</h1>
 </header>
-
 <main class="container my-5">
     <div class="table-responsive bg-light p-4 rounded shadow-sm">
         <table class="table table-bordered table-hover">
             <thead class="table-dark">
             <tr>
-                <th>Nom</th>
-                <th>Prénom</th>
-                <th>Nom d'utilisateur</th>
-                <th>Email</th>
-                <th>phone</th>
+                <th>ID</th>
+                <th>User</th>
+                <th>Amount</th>
+                <th>Date</th>
+                <th>Payment Method</th>
+                <!-- <th>Offer</th> -->
+                <th>Duration (months)</th>
                 <th>Actions</th>
             </tr>
             </thead>
             <tbody>
-            <tr th:each="user : ${users}">
-                <td th:text="${user.last_name}"></td>
-                <td th:text="${user.first_name}"></td>
-                <td th:text="${user.username}"></td>
-                <td th:text="${user.email}"></td>
-                <td th:text="${user.phone_number}"></td>
+            <tr th:each="payment : ${payments}">
+                <td th:text="${payment.idPaiement}"></td>
+                <td th:text="${payment.user.first_name + ' ' + payment.user.last_name}"></td>
+                <td th:text="${payment.montantPaiement}"></td>
+                <td th:text="${#dates.format(payment.datePaiement, 'yyyy-MM-dd')}"></td>
+                <td th:text="${payment.typePaiement}"></td>
+               <!-- <td th:text="${payment.offre != null} ? ${payment.offre.id} : 'Aucune offre'"></td> -->
+                <td th:text="${payment.duration}"></td>
                 <td class="text-center">
-                    <a th:href="@{/admin/users/edit/{id}(id=${user.id_user})}" class="btn btn-sm btn-warning">
+                    <a th:href="@{/admin/payments/edit/{id}(id=${payment.idPaiement})}" class="btn btn-sm btn-warning">
                         <i class="fas fa-edit"></i> Modify
                     </a>
-                    <form th:action="@{/admin/users/delete/{id}(id=${user.id_user})}" method="post"
-                          onsubmit="return confirm('You want to delete this user ?');"
+                    <form th:action="@{/admin/payments/delete/{id}(id=${payment.idPaiement})}" method="post"
+                          onsubmit="return confirm('You want to delete this payment?');"
                           style="display:inline;">
-                        <button type="submit" class="btn btn-sm btn-danger" >
+                        <button type="submit" class="btn btn-sm btn-danger">
                             <i class="fas fa-trash-alt"></i> Delete
                         </button>
                     </form>
@@ -58,22 +54,18 @@
             </tr>
             </tbody>
         </table>
-
         <div class="text-center mt-4">
-            <a href="/admin/users/add" class="btn btn-primary">
-            <i class="fas fa-plus"></i> Add a new Member </a>
+            <a href="/admin/payments/add" class="btn btn-primary">
+                <i class="fas fa-plus"></i> Add a new Payment
+            </a>
         </div>
-
-        <!-- Back Button -->
         <div class="text-center">
             <a href="/AdminPanel" class="btn btn-secondary">
                 <i class="fas fa-arrow-left"></i> Back
             </a>
         </div>
     </div>
-
 </main>
-
 <script src="/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

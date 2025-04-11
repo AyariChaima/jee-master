@@ -1,10 +1,85 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gérer les Coachs</title>
+
+    <!-- Favicon -->
+    <link href="/img/favicon.ico" rel="icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Rubik&display=swap" rel="stylesheet">
+
+    <!-- Icon Fonts -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Bootstrap & Custom CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
 </head>
 <body>
 
+<!-- Header -->
+<header class="bg-primary text-white text-center py-3">
+    <h1>Gestion des Coachs</h1>
+</header>
+
+<!-- Main Content -->
+<main class="container my-5">
+
+    <div class="table-responsive bg-light p-4 rounded shadow-sm">
+        <table class="table table-bordered table-hover">
+            <thead class="table-dark">
+            <tr>
+                <th>Prénom</th>
+                <th>Nom</th>
+                <th>Email</th>
+                <th>Spécialité</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="coach : ${coaches}">
+                <td th:text="${coach.first_name}"></td>
+                <td th:text="${coach.last_name}"></td>
+                <td th:text="${coach.email}"></td>
+                <td th:text="${coach.speciality}"></td>
+                <td class="text-center">
+                    <a th:href="@{/admin/coaches/edit/{id}(id=${coach.id_user})}" class="btn btn-sm btn-warning">
+                        <i class="fas fa-edit"></i> Modifier
+                    </a>
+                    <form th:action="@{/admin/coaches/delete/{id}(id=${coach.id_user})}" method="post"
+                          onsubmit="return confirm('You want to delete this coach ?');"
+                          style="display:inline;">
+                        <button type="submit" class="btn btn-sm btn-danger">
+                            <i class="fas fa-trash"></i> Delete
+                        </button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <div class="text-center mt-4">
+            <a href="/admin/coaches/add" class="btn btn-primary">
+                <i class="fas fa-plus"></i> Add a new coach </a>
+        </div>
+
+        <!-- Back Button -->
+        <div class="text-center">
+            <a href="/AdminPanel" class="btn btn-secondary">
+                <i class="fas fa-arrow-left"></i> Back
+            </a>
+        </div>
+    </div>
+
+
+</main>
+
+
+<!-- Scripts -->
+<script src="/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

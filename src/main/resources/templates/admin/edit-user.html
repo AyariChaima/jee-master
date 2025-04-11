@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modify a user</title>
+
+    <!-- Favicon -->
+    <link href="/img/favicon.ico" rel="icon">
+
+    <!-- Google Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Oswald&family=Rubik&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css" rel="stylesheet">
+
+    <!-- CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
+</head>
+<body>
+
+<header class="bg-primary text-white text-center py-3">
+    <h1>Modify a Member</h1>
+</header>
+
+<main class="container my-5">
+    <form th:action="@{/admin/users/update/{id}(id=${user.id_user})}" method="post" class="bg-light p-4 rounded shadow-sm">
+        <div class="mb-3">
+            <label for="first_name" class="form-label">First Name :</label>
+            <input type="text" id="first_name" name="first_name" th:value="${user.first_name}" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="last_name" class="form-label">Last Name :</label>
+            <input type="text" id="last_name" name="last_name" th:value="${user.last_name}" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="username" class="form-label">username :</label>
+            <input type="text" id="username" name="username" th:value="${user.username}" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="email" class="form-label">Email :</label>
+            <input type="email" id="email" name="email" th:value="${user.email}" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="phone_number" class="form-label">phone :</label>
+            <input type="text" id="phone_number" name="phone_number" th:value="${user.phone_number}" class="form-control" required>
+        </div>
+
+        <div class="text-center">
+            <button type="submit" class="btn btn-success">
+                <i class="fas fa-save"></i> Save
+            </button>
+            <a href="/admin/users" class="btn btn-secondary">
+                <i class="fas fa-arrow-left"></i> Back
+            </a>
+        </div>
+    </form>
+</main>
+
+
+<script src="/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

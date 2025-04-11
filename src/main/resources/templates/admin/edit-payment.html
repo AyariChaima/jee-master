@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modify Payment</title>
+
+  <!-- Favicon -->
+  <link href="/img/favicon.ico" rel="icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Rubik&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap CSS -->
+  <link href="/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/css/style.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- Header -->
+<header class="bg-primary text-white text-center py-3">
+  <h1>Modify Payment</h1>
+</header>
+
+<!-- Main Form -->
+<main class="container my-5">
+  <form th:action="@{/admin/payments/update/{id}(id=${paiement.idPaiement})}" method="post" class="bg-light p-4 rounded shadow-sm">
+
+    <div class="mb-3">
+      <label for="montantPaiement" class="form-label">Amount:</label>
+      <input type="number" step="0.01" id="montantPaiement" name="montantPaiement" th:value="${paiement.montantPaiement}" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="datePaiement" class="form-label">Date:</label>
+      <input type="date" id="datePaiement" name="datePaiement" th:value="${#dates.format(paiement.datePaiement, 'yyyy-MM-dd')}" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="typePaiement" class="form-label">Payment Method:</label>
+      <select id="typePaiement" name="typePaiement" class="form-select">
+        <option value="Visa" th:selected="${paiement.typePaiement == 'Visa'}">Visa</option>
+        <option value="Mastercard" th:selected="${paiement.typePaiement == 'Mastercard'}">Mastercard</option>
+        <option value="Cash" th:selected="${paiement.typePaiement == 'Cash'}">Cash</option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label for="duration" class="form-label">Duration (in months):</label>
+      <input type="number" id="duration" name="duration" th:value="${paiement.duration}" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="user" class="form-label">User:</label>
+      <select id="user" name="user.id_user" class="form-select" th:each="u : ${users}" th:value="${u.id_user}" th:text="${u.first_name + ' ' + u.last_name}" th:selected="${paiement.user.id_user == u.id_user}"></select>
+    </div>
+
+    <div class="mb-3">
+      <label for="offre" class="form-label">Offer:</label>
+      <select id="offre" name="offre.idOffre" class="form-select" th:each="o : ${offres}" th:value="${o.idOffre}" th:text="${o.nom}" th:selected="${paiement.offre.idOffre == o.idOffre}"></select>
+    </div>
+
+    <div class="text-center">
+      <button type="submit" class="btn btn-success">
+        <i class="fas fa-save"></i> Save
+      </button>
+      <a th:href="@{/admin/payments}" class="btn btn-secondary">
+        <i class="fas fa-arrow-left"></i> Back
+      </a>
+    </div>
+
+  </form>
+</main>
+
+<!-- Scripts -->
+<script src="/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

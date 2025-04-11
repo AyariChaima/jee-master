@@ -4,42 +4,67 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import tn.pi.entities.Equipement;
+import tn.pi.entities.Role;
 import tn.pi.entities.UserEntity;
-import tn.pi.repositories.UserRepository;
+import tn.pi.repositories.admin.AdminUserRepository;
+import tn.pi.repositories.RoleRepository;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/admin/users")
 public class AdminUserController {
 
     @Autowired
-    private UserRepository userRepository;
+    private AdminUserRepository adminUserRepository;
 
     @GetMapping
     public String listUsers(Model model) {
-        model.addAttribute("users", userRepository.findAll());
+        List<UserEntity> users = adminUserRepository.findAllUsers();
+        model.addAttribute("users", users);
         return "admin/users";
     }
 
-    @GetMapping("/edit/{id}")
-    public String editUser(@PathVariable Long id, Model model) {
-        UserEntity user = userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
-        model.addAttribute("user", user);
-        return "admin/edit-user";
+    @GetMapping("/add")
+    public String showAddForm(Model model) {
+        model.addAttribute("user", new UserEntity());
+        return "admin/add-user";
     }
 
-    @PostMapping("/edit/{id}")
-    public String updateUser(@PathVariable Long id, @ModelAttribute UserEntity updatedUser) {
-        UserEntity user = userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
-        user.setFirst_name(updatedUser.getFirst_name());
-        user.setLast_name(updatedUser.getLast_name());
-        user.setEmail(updatedUser.getEmail());
-        userRepository.save(user);
+    @PostMapping("/add")
+    public String addUser(@ModelAttribute UserEntity user) {
+        adminUserRepository.save(user);
+        return "redirect:/admin/users";
+    }
+
+    @GetMapping("/edit/{id}")
+    public String showEditForm(@PathVariable Long id, Model model) {
+        UserEntity user = adminUserRepository.findById(id).orElse(null);
+        if (user != null) {
+            model.addAttribute("user", user);
+            return "admin/edit-user";
+        }
+        return "redirect:/admin/users";
+    }
+
+    @PostMapping("/update/{id}")
+    public String updateUser(@PathVariable Long id, @ModelAttribute UserEntity userDetails) {
+        UserEntity user = adminUserRepository.findById(id).orElse(null);
+        if (user != null) {
+            user.setUsername(userDetails.getUsername());
+            user.setFirst_name(userDetails.getFirst_name());
+            user.setLast_name(userDetails.getLast_name());
+            user.setEmail(userDetails.getEmail());
+            user.setPhone_number(userDetails.getPhone_number());
+            adminUserRepository.save(user);
+        }
         return "redirect:/admin/users";
     }
 
     @PostMapping("/delete/{id}")
     public String deleteUser(@PathVariable Long id) {
-        userRepository.deleteById(id);
+        adminUserRepository.deleteById(id);
         return "redirect:/admin/users";
     }
 }

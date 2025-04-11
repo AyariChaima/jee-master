@@ -46,7 +46,6 @@ public class ActiviteController {
         if (user == null || !user.getRole().getRole().equals("COACH")) {
             return "redirect:/login";
         }
-        System.out.println("dkhalet lel controller lel add");
         List<Equipement> equipements = equipementRepository.findAll();
         model.addAttribute("equipements", equipements); // List of available equipment
         return "add-activite";
@@ -63,7 +62,7 @@ public class ActiviteController {
 
 
         UserEntity user = (UserEntity) session.getAttribute("user");
-        if (user == null || !user.getRole().getRole().equals("COACH")) {
+        if (user == null || !user.getRole().getRole().equals("COACH") || !user.getRole().getRole().equals("ADMIN") ) {
             return "redirect:/login";
         }
 
@@ -133,7 +132,7 @@ public class ActiviteController {
     @PostMapping("/delete/{id}")
     public String deleteActivite(@PathVariable Long id, HttpSession session) {
         UserEntity user = (UserEntity) session.getAttribute("user");
-        if (user == null || !user.getRole().getRole().equals("COACH")) {
+        if (user == null || !user.getRole().getRole().equals("COACH") || !user.getRole().getRole().equals("ADMIN") ) {
             return "redirect:/login";
         }
 

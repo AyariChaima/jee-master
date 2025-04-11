@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modify a user</title>
+
+    <!-- Favicon -->
+    <link href="/img/favicon.ico" rel="icon">
+
+    <!-- Google Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Oswald&family=Rubik&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css" rel="stylesheet">
+
+    <!-- CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
+</head>
+<body>
+
+<header class="bg-primary text-white text-center py-3">
+    <h1>Add a Member</h1>
+</header>
+
+<main class="container my-5">
+    <form th:action="@{/admin/users/add}" method="post">
+    <div class="mb-3">
+        <label for="first-name">First Name:</label>
+        <input type="text" id="first-name" name="firstName" required>
+    </div>
+
+    <div class="mb-3">
+        <label for="last-name">Last Name:</label>
+        <input type="text" id="last-name" name="lastName" required>
+    </div>
+
+    <div class="mb-3">
+        <label for="username">UserName:</label>
+        <input type="text" id="username" name="username" required>
+    </div>
+
+    <div class="mb-3">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+    </div>
+
+    <div class="mb-3">
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" required>
+    </div>
+
+    <div class="mb-3">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+    </div>
+
+    <div class="mb-3">
+        <label for="phone">Phone Number:</label>
+        <input type="text" id="phone" name="phoneNumber" required>
+    </div>
+
+    <div class="mb-3">
+        <label for="emergency-phone">Emergency Phone Number:</label>
+        <input type="text" id="emergency-phone" name="emergencyPhoneNumber" required>
+    </div>
+
+    <div class="mb-3">
+        <label for="date-of-inscription">Date of Inscription:</label>
+        <input type="date" id="date-of-inscription" name="dateOfInscription" required>
+    </div>
+
+        <div class="mb-3">
+            <label for="role">Role:</label><br>
+            <input type="radio" id="user" name="role" value="USER" required>
+            <label for="user">Adherent</label><br>
+            <input type="radio" id="coach" name="role" value="COACH" required onclick="showSpecialityInput()">
+            <label for="coach">Coach</label>
+        </div>
+
+        <button type="submit" class="btn btn-success">Add</button>
+    </form>
+</main>
+
+
+<script src="/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,4 +1,7 @@
 package tn.pi.repositories.admin;
 
-public interface AdminEquipementRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+import tn.pi.entities.Equipement;
+
+public interface AdminEquipementRepository extends JpaRepository<Equipement, Long> {
 }

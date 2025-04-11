@@ -49,9 +49,9 @@ public class PaiementController {
                 .datePaiement(new Date())
                 .montantPaiement(totalAmount)
                 .typePaiement(typePaiement)
-                .duration(duration) // Add the duration here
-                .user(user)  // Associate the current user
-                .offre(offre) // Associate the offer
+                .duration(duration)
+                .user(user)
+                .offre(offre)
                 .build();
 
         paiementRepository.save(paiement);
@@ -62,65 +62,6 @@ public class PaiementController {
         model.addAttribute("duration", duration);
         model.addAttribute("totalAmount", totalAmount);
 
-        return "paiement-confirmation"; // The page where the confirmation is shown
+        return "paiement-confirmation";
     }
-
-
-/* hedha l code l9dim
-    @Autowired
-    private PaiementRepository paiementRepository;
-
-    @GetMapping
-    public String listPaiements(Model model) {
-        List<Paiement> paiements = paiementRepository.findAll();
-        model.addAttribute("paiements", paiements);
-        return "paiement";
-    }
-
-    @GetMapping("/ajout")
-    public String showAddForm(Model model) {
-        model.addAttribute("paiement", new Paiement());
-        return "ajout-paiement";
-    }
-
-    @PostMapping("/add")
-    public String addPaiement(@ModelAttribute Paiement paiement) {
-        paiementRepository.save(paiement);
-        return "redirect:/paiements";
-    }
-
-
-
-    @GetMapping("/edit/{id}")
-    public String showEditForm(@PathVariable Long id, Model model) {
-        Paiement paiement = paiementRepository.findById(id).orElse(null);
-        if (paiement != null) {
-            model.addAttribute("paiement", paiement);
-            return "edit-paiement";
-        }
-        return "redirect:/paiements";
-    }
-
-
-
-    @PostMapping("/update/{id}")
-    public String updatePaiement(@PathVariable Long id, @ModelAttribute Paiement paiementDetails) {
-        Paiement paiement = paiementRepository.findById(id).orElse(null);
-        if (paiement == null) {
-            // Retourne une erreur si l'entité Paiement n'est pas trouvée
-            return "redirect:/paiements";
-        }
-        paiement.setDatePaiement(paiementDetails.getDatePaiement());
-        paiement.setTypePaiement(paiementDetails.getTypePaiement());
-        paiement.setMontantPaiement(paiementDetails.getMontantPaiement());
-        paiementRepository.save(paiement);
-        return "redirect:/paiements";
-    }
-
-
-    @PostMapping("/delete/{id}")
-    public String deletePaiement(@PathVariable Long id) {
-        paiementRepository.deleteById(id);
-        return "redirect:/paiements";
-    }*/
 }
