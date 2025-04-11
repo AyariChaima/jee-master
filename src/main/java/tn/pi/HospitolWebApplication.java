@@ -16,19 +16,4 @@ public class HospitolWebApplication {
 
 		SpringApplication.run(HospitolWebApplication.class, args);
 	}
-	/*
-	@Bean
-	public CommandLineRunner init2(AdherentRepository adherentRepository) {
-		return args -> {
-			Adherent a1 = Adherent.builder()
-					.nom_adherent("test")
-					.prenom_adherent("aziz")
-					.age(23)
-					.email("test@test.com")
-					.date_inscription(LocalDate.now())
-					.build();
-			adherentRepository.save(a1);
-		};
-	}
-*/
 }

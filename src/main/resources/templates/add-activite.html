@@ -1,40 +1,109 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Add Activity</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Favicon -->
+  <link href="/img/favicon.ico" rel="icon" />
+
+  <!-- Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Rubik&display=swap" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet" />
+
+  <!-- Bootstrap & Styles -->
+  <link href="/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="/css/style.css" rel="stylesheet" />
 </head>
 <body>
-<h1>Add a New Activity</h1>
 
-<!-- Success Message
-<div th:if="${param.success}" style="color: green;">
-  Activity added successfully!
+<!-- Header Start -->
+<div class="container-fluid bg-dark px-0">
+  <div class="row gx-0">
+    <div class="col-lg-3 bg-dark d-none d-lg-block">
+      <a href="/index2" class="navbar-brand w-100 h-100 m-0 p-0 d-flex align-items-center justify-content-center">
+        <h1 class="m-0 display-4 text-primary text-uppercase">Gymster</h1>
+      </a>
+    </div>
+    <div class="col-lg-9">
+      <nav class="navbar navbar-expand-lg bg-dark navbar-dark p-3 p-lg-0 px-lg-5">
+        <a href="/index2" class="navbar-brand d-block d-lg-none">
+          <h1 class="m-0 display-4 text-primary text-uppercase">Gymster</h1>
+        </a>
+        <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+          <div class="navbar-nav mr-auto py-0">
+            <a href="/index2" class="nav-item nav-link">Home</a>
+            <a href="/activites" class="nav-item nav-link">Activities</a>
+          </div>
+          <div class="d-flex">
+            <a href="/logout" class="btn btn-primary py-2 px-4">Log Out</a>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </div>
 </div>
--->
+<!-- Header End -->
 
-<form action="/activites/add" method="POST">
-  <label for="nomActivite">Activity Name:</label>
-  <input type="text" id="nomActivite" name="nomActivite" placeholder="Enter activity name" required><br>
+<!-- Main Content -->
+<main class="container my-5">
+  <div class="bg-light p-5 shadow rounded-4 w-75 mx-auto">
+    <h2 class="text-center text-uppercase text-primary mb-4">Add New Activity</h2>
 
-  <label for="dateDebutActivite">Start Date & Time:</label>
-  <input type="datetime-local" id="dateDebutActivite" name="dateDebut" required><br>
+    <form action="/activites/add" method="POST">
+      <!-- Activity Name -->
+      <div class="mb-3">
+        <label for="nomActivite" class="form-label">Activity Name</label>
+        <input type="text" id="nomActivite" name="nomActivite" class="form-control" placeholder="Enter activity name" required />
+      </div>
 
-  <label for="dateFinActivite">End Date & Time:</label>
-  <input type="datetime-local" id="dateFinActivite" name="dateFin" required><br>
+      <!-- Start Date -->
+      <div class="mb-3">
+        <label for="dateDebutActivite" class="form-label">Start Date & Time</label>
+        <input type="datetime-local" id="dateDebutActivite" name="dateDebut" class="form-control" required />
+      </div>
 
-  <label for="salle">Room:</label>
-  <input type="text" id="salle" name="salle" placeholder="Enter room name" required><br>
+      <!-- End Date -->
+      <div class="mb-3">
+        <label for="dateFinActivite" class="form-label">End Date & Time</label>
+        <input type="datetime-local" id="dateFinActivite" name="dateFin" class="form-control" required />
+      </div>
 
-  <label for="maxParticipants">Maximum Participants:</label>
-  <input type="number" id="maxParticipants" name="maxParticipants" min="1" required><br>
+      <!-- Room -->
+      <div class="mb-3">
+        <label for="salle" class="form-label">Room</label>
+        <input type="text" id="salle" name="salle" class="form-control" placeholder="Enter room name" required />
+      </div>
 
-  <label for="equipements">Select Equipment:</label><br>
-  <select id="equipements" name="equipements" multiple>
-    <option th:each="equipement : ${equipements}" th:value="${equipement.idEquipement}" th:text="${equipement.nomEquipement}"></option>
-  </select><br>
+      <!-- Max Participants -->
+      <div class="mb-3">
+        <label for="maxParticipants" class="form-label">Maximum Participants</label>
+        <input type="number" id="maxParticipants" name="maxParticipants" class="form-control" min="1" required />
+      </div>
 
-  <button type="submit">Add Activity</button>
-</form>
+      <!-- Equipements -->
+      <div class="mb-3">
+        <label for="equipements" class="form-label">Select Equipment</label>
+        <select id="equipements" name="equipements" class="form-select" multiple>
+          <option th:each="equipement : ${equipements}" th:value="${equipement.idEquipement}" th:text="${equipement.nomEquipement}"></option>
+        </select>
+        <small class="text-muted">Hold Ctrl (Cmd on Mac) to select multiple options</small>
+      </div>
+
+      <!-- Submit Button -->
+      <div class="text-center">
+        <button type="submit" class="btn btn-success px-4">Add Activity</button>
+        <a href="/activites" class="btn btn-secondary px-4 ms-2">Cancel</a>
+      </div>
+    </form>
+  </div>
+</main>
+
+<script src="/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

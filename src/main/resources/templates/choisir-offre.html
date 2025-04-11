@@ -1,80 +1,123 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Page d'Accueil</title>
+    <meta charset="UTF-8" />
+    <title>Choose Offer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <!-- Favicon -->
-    <link href="/img/favicon.ico" rel="icon">
+    <link href="/img/favicon.ico" rel="icon" />
 
-    <!-- Google Web Fonts -->
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Rubik&display=swap" rel="stylesheet">
+    <!-- Google Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Rubik&display=swap" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet" />
 
-    <!-- Icon Font Stylesheet -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
-    <link href="/lib/flaticon/font/flaticon.css" rel="stylesheet">
-
-    <!-- Libraries Stylesheet -->
-    <link href="/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-
-    <!-- Customized Bootstrap Stylesheet -->
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/css/style.css" rel="stylesheet">
+    <!-- Bootstrap & Styles -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/css/style.css" rel="stylesheet" />
 </head>
 <body>
-<h2>Choose Your Offer</h2>
-<p>Offer: <strong th:text="${offre.nomOffre}"></strong></p>
-<p>Price per month: <strong th:text="${offre.prixUnitaire}"></strong></p><br>
 
-<form action="/paiements/valider" method="POST">
-    <input type="hidden" name="offreId" th:value="${offre.idOffre}">
-
-    <!-- Duration Selection (Dropdown) -->
-    <label for="duration">Choose Duration:</label>
-    <select name="duration" id="duration" required>
-        <option value="1">1 Month</option>
-        <option value="3">3 Months</option>
-        <option value="6">6 Months</option>
-        <option value="12">12 Months</option>
-    </select>
-
-    <!-- Payment Type (Radio Buttons) -->
-    <label for="typePaiement">Choose Payment Type:</label><br>
-    <input type="radio" id="cash" name="typePaiement" value="CASH" required>
-    <label for="cash">Cash</label><br>
-    <input type="radio" id="visa" name="typePaiement" value="VISA">
-    <label for="visa">Visa</label><br>
-    <input type="radio" id="mastercard" name="typePaiement" value="MASTERCARD">
-    <label for="mastercard">MasterCard</label><br>
-
-    <!-- Visa/MasterCard Card Details -->
-    <div id="cardDetails" style="display:none;">
-        <label for="cardNumber">Card Number:</label>
-        <input type="text" id="cardNumber" name="cardNumber" placeholder="XXXX-XXXX-XXXX-XXXX" /><br>
-
-        <label for="expiryDate">Expiry Date:</label>
-        <input type="month" id="expiryDate" name="expiryDate" /><br>
-
-        <label for="cvv">CVV:</label>
-        <input type="text" id="cvv" name="cvv" placeholder="CVV" /><br>
+<!-- Header Start -->
+<div class="container-fluid bg-dark px-0">
+    <div class="row gx-0">
+        <div class="col-lg-3 bg-dark d-none d-lg-block">
+            <a href="/index2" class="navbar-brand w-100 h-100 m-0 p-0 d-flex align-items-center justify-content-center">
+                <h1 class="m-0 display-4 text-primary text-uppercase">Gymster</h1>
+            </a>
+        </div>
+        <div class="col-lg-9">
+            <nav class="navbar navbar-expand-lg bg-dark navbar-dark p-3 p-lg-0 px-lg-5">
+                <a href="/index2" class="navbar-brand d-block d-lg-none">
+                    <h1 class="m-0 display-4 text-primary text-uppercase">Gymster</h1>
+                </a>
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                    <div class="navbar-nav mr-auto py-0">
+                        <a href="/index2" class="nav-item nav-link">Home</a>
+                        <a href="/profile" class="nav-item nav-link">Profile</a>
+                    </div>
+                    <div class="d-flex">
+                        <a href="/logout" class="btn btn-primary py-2 px-4">Log Out</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
     </div>
-<br>
-    <button type="submit">Confirm</button>
-</form>
+</div>
+<!-- Header End -->
 
-<!-- Add JavaScript to show/hide card details based on selected payment method -->
+<!-- Main Content -->
+<main class="container my-5">
+    <div class="bg-light p-4 shadow rounded-4">
+        <h2 class="text-center mb-4 text-uppercase text-primary">Choose Your Offer</h2>
+
+        <p class="text-center fs-5">
+            Offer: <strong th:text="${offre.nomOffre}"></strong><br>
+            Price per month: <strong th:text="${offre.prixUnitaire} + ' DT'"></strong>
+        </p>
+
+        <form action="/paiements/valider" method="POST" class="w-75 mx-auto">
+            <input type="hidden" name="offreId" th:value="${offre.idOffre}" />
+
+            <!-- Duration -->
+            <div class="mb-3">
+                <label for="duration" class="form-label">Choose Duration</label>
+                <select name="duration" id="duration" class="form-select" required>
+                    <option value="1">1 Month</option>
+                    <option value="3">3 Months</option>
+                    <option value="6">6 Months</option>
+                    <option value="12">12 Months</option>
+                </select>
+            </div>
+
+            <!-- Payment Type -->
+            <div class="mb-3">
+                <label class="form-label">Choose Payment Type</label><br>
+                <div class="form-check form-check-inline">
+                    <input type="radio" id="cash" name="typePaiement" value="CASH" class="form-check-input" required>
+                    <label for="cash" class="form-check-label">Cash</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input type="radio" id="visa" name="typePaiement" value="VISA" class="form-check-input">
+                    <label for="visa" class="form-check-label">Visa</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input type="radio" id="mastercard" name="typePaiement" value="MASTERCARD" class="form-check-input">
+                    <label for="mastercard" class="form-check-label">MasterCard</label>
+                </div>
+            </div>
+
+            <!-- Card Details -->
+            <div id="cardDetails" class="mb-3" style="display: none;">
+                <label for="cardNumber" class="form-label">Card Number</label>
+                <input type="text" id="cardNumber" name="cardNumber" class="form-control mb-2" placeholder="XXXX-XXXX-XXXX-XXXX" />
+
+                <label for="expiryDate" class="form-label">Expiry Date</label>
+                <input type="month" id="expiryDate" name="expiryDate" class="form-control mb-2" />
+
+                <label for="cvv" class="form-label">CVV</label>
+                <input type="text" id="cvv" name="cvv" class="form-control" placeholder="CVV" />
+            </div>
+
+            <div class="text-center">
+                <button type="submit" class="btn btn-success px-4 mt-3">Confirm</button>
+            </div>
+        </form>
+    </div>
+</main>
+
+<script src="/js/bootstrap.bundle.min.js"></script>
 <script>
     const paymentType = document.querySelectorAll('input[name="typePaiement"]');
     const cardDetails = document.getElementById('cardDetails');
 
     paymentType.forEach((radio) => {
-        radio.addEventListener('change', function() {
-            if (this.value === 'VISA' || this.value === 'MASTERCARD') {
-                cardDetails.style.display = 'block';
-            } else {
-                cardDetails.style.display = 'none';
-            }
+        radio.addEventListener('change', function () {
+            cardDetails.style.display = (this.value === 'VISA' || this.value === 'MASTERCARD') ? 'block' : 'none';
         });
     });
 </script>
