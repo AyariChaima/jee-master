@@ -40,5 +40,5 @@ public class Activite {
 
     @ManyToOne
     @JoinColumn(name = "coach_id")
-    private UserEntity coach; // Coach who created the activity
+    private UserEntity coach;
 }

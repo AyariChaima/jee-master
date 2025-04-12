@@ -24,6 +24,6 @@ public class IndexController {
         model.addAttribute("offers", offers);
 
 
-        return "index2"; // Renvoie vers le template `index.html`
+        return "index2"; // Renvoie vers le template `index2.html`
     }
 }

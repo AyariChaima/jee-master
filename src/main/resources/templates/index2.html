@@ -50,7 +50,7 @@
                             <a href="#offers" class="nav-item nav-link">Offers</a>
                             <a href="#contact" class="nav-item nav-link">Contact</a>
 
-                            <!-- Coach-only links -->
+
                             <a th:if="${session.user != null} and ${session.user.role.role == 'COACH'}"
                                href="/equipements" class="nav-item nav-link">Equipements</a>
                             <a th:if="${session.user != null} and ${session.user.role.role == 'COACH'}"
