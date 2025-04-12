@@ -31,15 +31,13 @@ public class ParticipationController {
     public String listActivitiesForUsers(Model model, HttpSession session) {
         UserEntity user = (UserEntity) session.getAttribute("user");
         if (user == null) {
-            return "redirect:/login"; // Ensure only logged-in users can access this page
+            return "redirect:/login";
         }
 
         List<Activite> activites = activiteRepository.findAll();
 
-        // Map to store participation status for each activity
         Map<Long, Boolean> participationStatus = new HashMap<>();
 
-        // Map to store the number of places left for each activity
         Map<Long, Integer> placesLeft = new HashMap<>();
 
         for (Activite activite : activites) {

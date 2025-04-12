@@ -18,15 +18,9 @@ public class UserService {
     private RoleRepository roleRepository;
 
     public void registerUser(String firstName, String lastName, String username, String password, Integer age,
-                             String email, String phoneNumber, String emergencyPhoneNumber, String dateOfInscription,
-                             String roleName) {
+                             String email, String phoneNumber, String emergencyPhoneNumber, String dateOfInscription) {
         if (userRepository.findByUsername(username) != null) {
             throw new IllegalArgumentException("Username already exists!");
-        }
-
-        Role role = roleRepository.findByRole(roleName);
-        if (role == null) {
-            throw new IllegalArgumentException("Role not found!");
         }
 
         UserEntity user = new UserEntity();
@@ -39,7 +33,6 @@ public class UserService {
         user.setPhone_number(phoneNumber);
         user.setEmergency_phone_number(emergencyPhoneNumber);
         user.setDate_of_inscription(LocalDate.parse(dateOfInscription));
-        user.setRole(role);
 
         userRepository.save(user);
     }

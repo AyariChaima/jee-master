@@ -29,22 +29,22 @@ public class PaiementController {
                                   @RequestParam Integer duration,
                                   @RequestParam String typePaiement,
                                   HttpSession session, Model model) {
-        // Retrieve the offer details
+
         Offre offre = offreRepository.findById(offreId).orElse(null);
         if (offre == null) {
             return "error"; // Handle offer not found
         }
 
-        // Retrieve the user from the session
+
         UserEntity user = (UserEntity) session.getAttribute("user");
         if (user == null) {
             return "redirect:/login"; // Redirect to login if user is not logged in
         }
 
-        // Calculate the total amount
+
         double totalAmount = offre.getPrixUnitaire() * duration;
 
-        // Create and save the payment record
+
         Paiement paiement = Paiement.builder()
                 .datePaiement(new Date())
                 .montantPaiement(totalAmount)
@@ -56,12 +56,11 @@ public class PaiementController {
 
         paiementRepository.save(paiement);
 
-        // Show confirmation
         model.addAttribute("message", "Paiement effectué avec succès!");
         model.addAttribute("offre", offre);
         model.addAttribute("duration", duration);
         model.addAttribute("totalAmount", totalAmount);
 
-        return "paiement-confirmation";
+        return "redirect:/profile";
     }
 }

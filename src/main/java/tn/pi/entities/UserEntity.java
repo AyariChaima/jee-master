@@ -30,5 +30,5 @@ public class UserEntity {
     private Role role;
 
     @OneToMany(mappedBy = "user",fetch = FetchType.EAGER)
-    private List<Paiement> paiements; // List of payments made by this user
+    private List<Paiement> paiements;
 }

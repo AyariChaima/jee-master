@@ -14,12 +14,11 @@ public class OffreController {
 
     @GetMapping("/offre/choisir/{id}")
         public String choisirOffre(@PathVariable Long id, Model model) {
-        // Retrieve the offer from the database using the id
         Offre offre = offreRepository.findById(id).orElse(null);
         if (offre == null) {
-            return "error"; // Handle offer not found
+            return "error";
         }
         model.addAttribute("offre", offre);
-        return "choisir-offre"; // Offer selection page
+        return "choisir-offre";
     }
 }

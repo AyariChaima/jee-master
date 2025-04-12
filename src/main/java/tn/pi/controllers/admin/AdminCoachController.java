@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import tn.pi.entities.UserEntity;
+import tn.pi.repositories.RoleRepository;
 import tn.pi.repositories.admin.AdminCoachRepository;
 
 import java.util.List;

@@ -20,15 +20,13 @@ public class ProfileController {
     public String showProfilePage(HttpSession session, Model model) {
         UserEntity user = (UserEntity) session.getAttribute("user");
         if (user == null) {
-            return "redirect:/login"; // Redirect to login if not logged in
+            return "redirect:/login";
         }
 
         model.addAttribute("user", user);
 
-        // Check if the user has any payments
         var paiements = user.getPaiements();
         if (paiements != null && !paiements.isEmpty()) {
-            // Get the latest payment (assuming it's the last in the list)
             var lastPaiement = paiements.get(paiements.size() - 1);
             model.addAttribute("offer", lastPaiement.getOffre());
             model.addAttribute("duration", lastPaiement.getDuration());
@@ -37,6 +35,7 @@ public class ProfileController {
             model.addAttribute("offer", null); // No offer found
         }
 
+        session.setAttribute("user", user);
         return "profile";
     }
 

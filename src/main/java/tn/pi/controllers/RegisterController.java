@@ -27,7 +27,6 @@ public class RegisterController {
                                @RequestParam String phoneNumber,
                                @RequestParam String emergencyPhoneNumber,
                                @RequestParam String dateOfInscription,
-                               @RequestParam String role,
                                Model model) {
         try {
             userService.registerUser(firstName, lastName, username, password, age, email, phoneNumber, emergencyPhoneNumber, dateOfInscription, "USER");
