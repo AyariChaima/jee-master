@@ -19,6 +19,9 @@ public class AdminUserController {
     @Autowired
     private AdminUserRepository adminUserRepository;
 
+    @Autowired
+    private RoleRepository roleRepository;
+
     @GetMapping
     public String listUsers(Model model) {
         List<UserEntity> users = adminUserRepository.findAllUsers();
@@ -34,6 +37,8 @@ public class AdminUserController {
 
     @PostMapping("/add")
     public String addUser(@ModelAttribute UserEntity user) {
+        Role role = roleRepository.findByRole("USER");
+        user.setRole(role);
         adminUserRepository.save(user);
         return "redirect:/admin/users";
     }

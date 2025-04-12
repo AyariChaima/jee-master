@@ -25,13 +25,13 @@
 <main class="container my-5">
     <form th:action="@{/admin/users/add}" method="post">
     <div class="mb-3">
-        <label for="first-name">First Name:</label>
-        <input type="text" id="first-name" name="firstName" required>
+        <label for="first_name">First Name:</label>
+        <input type="text" id="first_name" name="firstName" required>
     </div>
 
     <div class="mb-3">
-        <label for="last-name">Last Name:</label>
-        <input type="text" id="last-name" name="lastName" required>
+        <label for="last_name">Last Name:</label>
+        <input type="text" id="last_name" name="lastName" required>
     </div>
 
     <div class="mb-3">
@@ -60,22 +60,14 @@
     </div>
 
     <div class="mb-3">
-        <label for="emergency-phone">Emergency Phone Number:</label>
-        <input type="text" id="emergency-phone" name="emergencyPhoneNumber" required>
+        <label for="emergency_phone_number">Emergency Phone Number:</label>
+        <input type="text" id="emergency_phone_number" name="emergencyPhoneNumber" required>
     </div>
 
     <div class="mb-3">
-        <label for="date-of-inscription">Date of Inscription:</label>
-        <input type="date" id="date-of-inscription" name="dateOfInscription" required>
+        <label for="date_of_inscription">Date of Inscription:</label>
+        <input type="date" id="date_of_inscription" name="dateOfInscription" required>
     </div>
-
-        <div class="mb-3">
-            <label for="role">Role:</label><br>
-            <input type="radio" id="user" name="role" value="USER" required>
-            <label for="user">Adherent</label><br>
-            <input type="radio" id="coach" name="role" value="COACH" required onclick="showSpecialityInput()">
-            <label for="coach">Coach</label>
-        </div>
 
         <button type="submit" class="btn btn-success">Add</button>
     </form>

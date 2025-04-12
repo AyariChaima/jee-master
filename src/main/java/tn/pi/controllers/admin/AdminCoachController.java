@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import tn.pi.entities.Role;
 import tn.pi.entities.UserEntity;
 import tn.pi.repositories.RoleRepository;
 import tn.pi.repositories.admin.AdminCoachRepository;
@@ -16,6 +17,9 @@ public class AdminCoachController {
 
     @Autowired
     private AdminCoachRepository adminCoachRepository;
+
+    @Autowired
+    private RoleRepository roleRepository;
 
     @GetMapping
     public String listCoaches(Model model) {
@@ -32,6 +36,8 @@ public class AdminCoachController {
 
     @PostMapping("/add")
     public String addUser(@ModelAttribute UserEntity user) {
+        Role role = roleRepository.findByRole("COACH");
+        user.setRole(role);
         adminCoachRepository.save(user);
         return "redirect:admin/coaches";
     }
