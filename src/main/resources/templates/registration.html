@@ -168,32 +168,33 @@
             <label for="date-of-inscription">Date of Inscription:</label>
             <input type="date" id="date-of-inscription" name="dateOfInscription" required>
         </div>
+        <!--
+                <div class="mb-3">
+                    <label for="role">Role:</label><br>
+                    <input type="radio" id="user" name="role" value="USER" required>
+                    <label for="user">Adherent</label><br>
+                    <input type="radio" id="coach" name="role" value="COACH" required onclick="showSpecialityInput()">
+                    <label for="coach">Coach</label>
+                </div>
 
-        <div class="mb-3">
-            <label for="role">Role:</label><br>
-            <input type="radio" id="user" name="role" value="USER" required>
-            <label for="user">Adherent</label><br>
-            <input type="radio" id="coach" name="role" value="COACH" required onclick="showSpecialityInput()">
-            <label for="coach">Coach</label>
-        </div>
+                <div class="mb-3" id="speciality-container" style="display: none;">
+                    <label for="speciality">Speciality:</label>
+                    <input type="text" id="speciality" name="speciality">
+                </div>
 
-        <div class="mb-3" id="speciality-container" style="display: none;">
-            <label for="speciality">Speciality:</label>
-            <input type="text" id="speciality" name="speciality">
-        </div>
+                <script>
+                    function showSpecialityInput() {
+                        document.getElementById('speciality-container').style.display = 'block';
+                    }
+                </script>
+                -->
+                <div class="text-center">
+                    <button type="submit" class="btn">Register <i class="fas fa-user-plus"></i></button>
+                    <p style="color: black"> Already have an account ? <a style="color: red" href="/login">sign in</a> now ! </p>
+                </div>
 
-        <script>
-            function showSpecialityInput() {
-                document.getElementById('speciality-container').style.display = 'block';
-            }
-        </script>
-        <div class="text-center">
-            <button type="submit" class="btn">Register <i class="fas fa-user-plus"></i></button>
-            <p style="color: black"> Already have an account ? <a style="color: red" href="/login">sign in</a> now ! </p>
-        </div>
+            </form>
+        </main>
+        </body>
 
-    </form>
-</main>
-</body>
-
-</html>
+        </html>

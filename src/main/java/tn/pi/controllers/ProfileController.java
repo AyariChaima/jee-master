@@ -26,7 +26,7 @@ public class ProfileController {
         model.addAttribute("user", user);
 
         // Check if the user has any payments
-        var paiements = user.getPaiements(); // Assuming `getPaiements()` returns a list of payments
+        var paiements = user.getPaiements();
         if (paiements != null && !paiements.isEmpty()) {
             // Get the latest payment (assuming it's the last in the list)
             var lastPaiement = paiements.get(paiements.size() - 1);
