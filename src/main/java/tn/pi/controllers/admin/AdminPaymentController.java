@@ -11,6 +11,7 @@ import tn.pi.repositories.admin.AdminPaymentRepository;
 import tn.pi.repositories.OffreRepository;
 import tn.pi.repositories.admin.AdminUserRepository;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -49,10 +50,10 @@ public class AdminPaymentController {
     }
 
     @GetMapping("/edit/{id}")
-    public String showEditForm(@PathVariable Long id, Model model) {
+    public String showEditForm(@PathVariable Long id,Model model) {
         Optional<Paiement> paymentOpt = adminPaymentRepository.findById(id);
         if (paymentOpt.isPresent()) {
-            model.addAttribute("payment", paymentOpt.get());
+            model.addAttribute("paiement", paymentOpt.get());
             model.addAttribute("users", adminUserRepository.findAll());
             model.addAttribute("offers", offreRepository.findAll());
             return "admin/edit-payment";

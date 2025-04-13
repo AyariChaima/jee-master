@@ -24,7 +24,7 @@
 
 <!-- Main Form -->
 <main class="container my-5">
-  <form th:action="@{/admin/payments/save}" method="post" class="bg-light p-4 rounded shadow-sm">
+  <form th:action="@{/admin/payments/add}" method="post" class="bg-light p-4 rounded shadow-sm">
 
     <div class="mb-3">
       <label for="montantPaiement" class="form-label">Amount:</label>
@@ -53,12 +53,24 @@
 
     <div class="mb-3">
       <label for="user" class="form-label">User:</label>
-      <select id="user" name="user.id_user" class="form-select" required th:each="u : ${users}" th:value="${u.id_user}" th:text="${u.first_name + ' ' + u.last_name}"></select>
+      <select id="user" name="user.id_user" class="form-select">
+        <option th:each="u : ${users}"
+                th:value="${u.id_user}"
+                th:text="${u.first_name + ' ' + u.last_name}"
+                th:selected="${payment.user != null and payment.user.id_user == u.id_user}">
+        </option>
+      </select>
     </div>
 
     <div class="mb-3">
       <label for="offre" class="form-label">Offer:</label>
-      <select id="offre" name="offre.idOffre" class="form-select" required th:each="o : ${offres}" th:value="${o.idOffre}" th:text="${o.nom}"></select>
+      <select id="offre" name="offre.idOffre" class="form-select">
+      <option th:each="o: ${offers}"
+              th:value="${o.idOffre}"
+              th:text="${o.nomOffre}"
+              th:selected="${payment.offre != null and payment.offre.idOffre == o.idOffre}">
+      </option>
+      </select>
     </div>
 
     <div class="text-center">

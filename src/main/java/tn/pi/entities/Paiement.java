@@ -2,6 +2,7 @@ package tn.pi.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
@@ -15,14 +16,15 @@ public class Paiement {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idPaiement;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date datePaiement;
     private Double montantPaiement;
-    private String typePaiement; //carte visa , master , cash
+    private String typePaiement;
     private Integer duration;
     @ManyToOne
-    private UserEntity user; // Link to the user who made the payment
+    private UserEntity user;
 
     @ManyToOne
-    private Offre offre; // Link to the offer chosen by the user
+    private Offre offre;
 
 }

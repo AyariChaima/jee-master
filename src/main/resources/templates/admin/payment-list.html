@@ -25,7 +25,7 @@
                 <th>Amount</th>
                 <th>Date</th>
                 <th>Payment Method</th>
-                <!-- <th>Offer</th> -->
+                 <th>Offer</th>
                 <th>Duration (months)</th>
                 <th>Actions</th>
             </tr>
@@ -37,7 +37,7 @@
                 <td th:text="${payment.montantPaiement}"></td>
                 <td th:text="${#dates.format(payment.datePaiement, 'yyyy-MM-dd')}"></td>
                 <td th:text="${payment.typePaiement}"></td>
-               <!-- <td th:text="${payment.offre != null} ? ${payment.offre.id} : 'Aucune offre'"></td> -->
+                <td th:text="${payment.offre != null} ? ${payment.offre.nomOffre} : 'Aucune offre'"></td>
                 <td th:text="${payment.duration}"></td>
                 <td class="text-center">
                     <a th:href="@{/admin/payments/edit/{id}(id=${payment.idPaiement})}" class="btn btn-sm btn-warning">

@@ -26,6 +26,7 @@
 <main class="container my-5">
   <div class="bg-light p-4 rounded shadow-sm">
     <form th:action="@{/admin/offres/save}" method="post">
+      <input type="hidden" name="idOffre" th:value="${offre.idOffre}"/>
       <div class="mb-3">
         <label for="nomOffre" class="form-label">Offer Name</label>
         <input type="text" class="form-control" id="nomOffre" name="nomOffre" th:value="${offre.nomOffre}" required>
@@ -36,7 +37,7 @@
       </div>
       <div class="mb-3">
         <label for="description" class="form-label">Description</label>
-        <textarea class="form-control" id="description" name="description" rows="3" required th:value="${offre.description}"></textarea>
+        <textarea class="form-control" id="description" name="description" rows="3" required th:field="${offre.description}"></textarea>
       </div>
 
       <div class="text-center mt-4">

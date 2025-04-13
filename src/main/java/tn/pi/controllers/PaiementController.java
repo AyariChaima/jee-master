@@ -23,7 +23,6 @@ public class PaiementController {
     @Autowired
     private OffreRepository offreRepository;
 
-    // Method to validate the payment
     @PostMapping("/valider")
     public String validerPaiement(@RequestParam Long offreId,
                                   @RequestParam Integer duration,

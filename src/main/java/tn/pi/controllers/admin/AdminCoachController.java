@@ -39,7 +39,7 @@ public class AdminCoachController {
         Role role = roleRepository.findByRole("COACH");
         user.setRole(role);
         adminCoachRepository.save(user);
-        return "redirect:admin/coaches";
+        return "redirect:/admin/coaches";
     }
 
     @GetMapping("/edit/{id}")

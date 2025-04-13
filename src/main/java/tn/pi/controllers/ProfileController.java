@@ -18,10 +18,14 @@ public class ProfileController {
 
     @GetMapping
     public String showProfilePage(HttpSession session, Model model) {
-        UserEntity user = (UserEntity) session.getAttribute("user");
-        if (user == null) {
+        UserEntity sessionUser = (UserEntity) session.getAttribute("user");
+        if (sessionUser == null) {
             return "redirect:/login";
         }
+
+        // Refresh user data from the database
+        UserEntity user = userService.findById(sessionUser.getId_user());
+        session.setAttribute("user", user);
 
         model.addAttribute("user", user);
 
@@ -35,7 +39,6 @@ public class ProfileController {
             model.addAttribute("offer", null); // No offer found
         }
 
-        session.setAttribute("user", user);
         return "profile";
     }
 

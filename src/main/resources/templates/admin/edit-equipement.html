@@ -22,9 +22,9 @@
   <h1>Modify an Equipement</h1>
 </header>
 
-<!-- Main Content Section -->
+
 <main class="container my-5">
-  <!-- Formulaire de modification -->
+
   <form th:action="@{/admin/equipements/update/{id}(id=${equipement.idEquipement})}" method="post" class="shadow p-4 rounded bg-light">
     <div class="mb-3">
       <label for="nomEquipement" class="form-label">Nom de l'Équipement :</label>

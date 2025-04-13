@@ -22,7 +22,7 @@
   <h1>Modify Payment</h1>
 </header>
 
-<!-- Main Form -->
+
 <main class="container my-5">
   <form th:action="@{/admin/payments/update/{id}(id=${paiement.idPaiement})}" method="post" class="bg-light p-4 rounded shadow-sm">
 
@@ -52,12 +52,24 @@
 
     <div class="mb-3">
       <label for="user" class="form-label">User:</label>
-      <select id="user" name="user.id_user" class="form-select" th:each="u : ${users}" th:value="${u.id_user}" th:text="${u.first_name + ' ' + u.last_name}" th:selected="${paiement.user.id_user == u.id_user}"></select>
+      <select id="user" name="user.id_user" class="form-select">
+        <option th:each="u : ${users}"
+                th:value="${u.id_user}"
+                th:text="${u.first_name + ' ' + u.last_name}"
+                th:selected="${paiement.user.id_user == u.id_user}">
+        </option>
+      </select>
     </div>
 
     <div class="mb-3">
       <label for="offre" class="form-label">Offer:</label>
-      <select id="offre" name="offre.idOffre" class="form-select" th:each="o : ${offres}" th:value="${o.idOffre}" th:text="${o.nom}" th:selected="${paiement.offre.idOffre == o.idOffre}"></select>
+      <select id="offre" name="offre.idOffre" class="form-select">
+        <option th:each="o: ${offers}"
+                th:value="${o.idOffre}"
+                th:text="${o.nomOffre}"
+                th:selected="${paiement.offre != null and paiement.offre.idOffre == o.idOffre}">
+        </option>
+      </select>
     </div>
 
     <div class="text-center">

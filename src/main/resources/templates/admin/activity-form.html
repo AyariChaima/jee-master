@@ -16,33 +16,39 @@
 
         <div class="mb-3">
             <label for="nomActivite" class="form-label">Activity Name</label>
-            <input type="text" class="form-control" th:field="*{nomActivite}" required/>
+            <input id="nomActivite" type="text" class="form-control" th:field="*{nomActivite}" required/>
         </div>
 
         <div class="mb-3">
             <label for="dateDebutActivite" class="form-label">Start Date/Time</label>
-            <input type="datetime-local" class="form-control" th:field="*{dateDebutActivite}" required/>
+            <input id="dateDebutActivite" type="datetime-local" class="form-control" th:field="*{dateDebutActivite}" required/>
         </div>
 
         <div class="mb-3">
             <label for="dateFinActivite" class="form-label">End Date/Time</label>
-            <input type="datetime-local" class="form-control" th:field="*{dateFinActivite}" required/>
+            <input id="dateFinActivite" type="datetime-local" class="form-control" th:field="*{dateFinActivite}" required/>
         </div>
 
         <div class="mb-3">
             <label for="coach" class="form-label">Coach</label>
-            <select class="form-control" th:field="*{coach}" required>
-                <option th:each="coach : ${coaches}" th:value="${coach}" th:text="${coach.first_name + ' ' + coach.last_name}"></option>
+            <select id="coach" class="form-control" name="coach" required>
+                <option th:each="coach : ${coaches}"
+                        th:value="${coach.id_user}"
+                        th:text="${coach.first_name + ' ' + coach.last_name}">
+                </option>
             </select>
         </div>
-
+<!--
         <div class="mb-3">
             <label for="equipements" class="form-label">Equipments</label>
-            <select class="form-control" multiple th:field="*{equipements}">
-                <option th:each="eq : ${equipements}" th:value="${eq}" th:text="${eq.nomEquipement}"></option>
+            <select id="equipements" class="form-control" name="equipements" multiple>
+                <option th:each="eq : ${equipements}"
+                        th:value="${eq.idEquipement}"
+                        th:text="${eq.nomEquipement}">
+                </option>
             </select>
         </div>
-
+-->
         <button type="submit" class="btn btn-success">Save</button>
         <a href="/admin/activities" class="btn btn-secondary">Cancel</a>
     </form>

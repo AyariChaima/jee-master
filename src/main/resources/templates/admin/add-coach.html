@@ -26,12 +26,12 @@
     <form th:action="@{/admin/coaches/add}" method="post" th:object="${user}">
         <div class="mb-3">
             <label for="first-name">First Name:</label>
-            <input type="text" id="first-name" name="firstName" required>
+            <input type="text" id="first-name" name="first_name" required>
         </div>
 
         <div class="mb-3">
             <label for="last-name">Last Name:</label>
-            <input type="text" id="last-name" name="lastName" required>
+            <input type="text" id="last-name" name="last_name" required>
         </div>
 
         <div class="mb-3">
@@ -56,22 +56,22 @@
 
         <div class="mb-3">
             <label for="phone">Phone Number:</label>
-            <input type="text" id="phone" name="phoneNumber" required>
+            <input type="text" id="phone" name="phone_number" required>
         </div>
 
         <div class="mb-3">
             <label for="emergency-phone">Emergency Phone Number:</label>
-            <input type="text" id="emergency-phone" name="emergencyPhoneNumber" required>
+            <input type="text" id="emergency-phone" name="emergency_phone_number" required>
         </div>
 
-        <div class="mb-3" id="speciality-container" style="display: none;">
+        <div class="mb-3">
             <label for="speciality">Speciality:</label>
             <input type="text" id="speciality" name="speciality">
         </div>
 
         <div class="mb-3">
             <label for="date-of-inscription">Date of Inscription:</label>
-            <input type="date" id="date-of-inscription" name="dateOfInscription" required>
+            <input type="date" id="date-of-inscription" name="date_of_inscription" required>
         </div>
 
 

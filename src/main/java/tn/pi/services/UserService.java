@@ -50,4 +50,9 @@ public class UserService {
         userRepository.save(user);
     }
 
+    public UserEntity findById(Long id) {
+        return userRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("User not found with ID: " + id));
+    }
+
 }

@@ -21,26 +21,31 @@
         <th>ID</th>
         <th>Name</th>
         <th>Coach</th>
-        <th>Equipments</th>
+
+      <!--  <th>Equipments</th> -->
         <th>Start</th>
         <th>End</th>
         <th>Participants</th>
         <th>Actions</th>
       </tr>
       </thead>
-      <tbody>
+      <tbody th:if="${activities != null}">
       <tr th:each="activity : ${activities}">
         <td th:text="${activity.idActivite}"></td>
         <td th:text="${activity.nomActivite}"></td>
-        <!-- <td th:text="${activity.coach.first_name + ' ' + activity.coach.last_name}"></td>
+
+        <td th:text="${activity.coach != null ? activity.coach.first_name + ' ' + activity.coach.last_name : 'N/A'}"></td>
+<!--
         <td>
           <ul>
             <li th:each="eq : ${activity.equipements}" th:text="${eq.nomEquipement}"></li>
           </ul>
+          <span th:if="${#lists.isEmpty(activity.equipements)}" class="text-muted">No Equipments</span>
         </td>
-        <td th:text="${#temporals.format(activite.dateDebutActivite, 'yyyy-MM-dd HH:mm')}"></td>
-        <td th:text="${#temporals.format(activite.dateFinActivite, 'yyyy-MM-dd HH:mm')}"></td>
-        <td th:text="${activite.maxParticipants}"></td>-->
+-->
+        <td th:text="${#temporals.format(activity.dateDebutActivite, 'yyyy-MM-dd HH:mm')}"></td>
+        <td th:text="${#temporals.format(activity.dateFinActivite, 'yyyy-MM-dd HH:mm')}"></td>
+        <td th:text="${activity.maxParticipants}"></td>
         <td>
           <a th:href="@{/admin/activities/edit/{id}(id=${activity.idActivite})}" class="btn btn-sm btn-warning">
             <i class="fas fa-edit"></i> Edit

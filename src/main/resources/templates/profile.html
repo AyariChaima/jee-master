@@ -53,7 +53,8 @@
 <main class="container my-5">
   <div class="bg-light p-5 rounded shadow-sm">
     <h2 class="text-center mb-4 text-uppercase">My Profile</h2>
-    <div th:if="${offer == null} and ${session.user.role.role != 'COACH'}">
+    <div th:if="${session.user.role.role != 'COACH'}">
+    <div th:if="${offer == null} ">
       <p class="text-center text-danger">No offer found! Start your journey now</p>
       <div class="text-center">
         <a href="/index#offers" class="btn btn-primary">Start Now</a>
@@ -69,7 +70,7 @@
         <li class="list-group-item"><strong>Total Paid:</strong> <span th:text="${duration * offer.prixUnitaire}"></span> DT</li>
       </ul>
     </div>
-
+    </div>
     <h4 class="text-uppercase text-primary">Update Your Credentials:</h4>
 
     <form action="/profile/update" method="post">

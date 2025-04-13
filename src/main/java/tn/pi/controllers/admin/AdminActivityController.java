@@ -42,7 +42,11 @@ public class AdminActivityController {
     }
 
     @PostMapping("/save")
-    public String saveActivity(@ModelAttribute Activite activity) {
+    public String saveActivity(@ModelAttribute Activite activity, @RequestParam Long coach, @RequestParam List<Long> equipements) {
+        UserEntity coachEntity = userRepository.findById(coach).orElseThrow();
+        List<Equipement> equipementList = equipementRepository.findAllById(equipements);
+        activity.setCoach(coachEntity);
+        activity.setEquipements(equipementList);
         activiteRepository.save(activity);
         return "redirect:/admin/activities";
     }
